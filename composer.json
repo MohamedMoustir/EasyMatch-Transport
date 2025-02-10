@@ -1,0 +1,14 @@
+{
+    "name": "cabinet-medical/mvc",
+    "description": "Application de gestion de cabinet médical",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Core\\": "core/"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    }
+}
