@@ -59,90 +59,62 @@
         </div>
 
         <!-- Stepper avec effet néon -->
-        <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 mb-8 shadow-xl border border-white/10">
-            <h2 class="text-2xl font-bold text-white mb-6">Nouvel Itinéraire</h2>
-            <div class="flex justify-between items-center mb-8">
-                <div class="flex items-center w-full">
-                    <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/50">1</div>
-                    <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-                    <div class="w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center">2</div>
-                    <div class="flex-1 h-1 mx-4 bg-white/10"></div>
-                    <div class="w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center">3</div>
-                </div>
-            </div>
-            <div class="space-y-6">
-                <input type="text" placeholder="Point de départ" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
-                <input type="text" placeholder="Capacité du véhicule" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
-                <input type="text" placeholder="Types de colis acceptés" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300">
-            </div>
-
-<body class="bg-[#1a1f2e] min-h-screen p-8">
-    <!-- Étape 2 -->
-    <div class="mb-12">
-        <h2 class="text-2xl font-bold text-white mb-8">Villes Intermédiaires</h2>
-        <div class="flex items-center justify-between mb-8">
-            <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-gray-400">1</div>
-            <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-            <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-500/50">2</div>
-            <div class="flex-1 h-1 mx-4 bg-gray-700"></div>
-            <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-gray-400">3</div>
-        </div>
         
-        <div class="space-y-4">
-            <div class="relative">
-                <input type="text" placeholder="Ville intermédiaire 1" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-400">+</button>
-            </div>
-            <div class="relative">
-                <input type="text" placeholder="Ville intermédiaire 2" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-purple-500 hover:text-purple-400">+</button>
-            </div>
-        </div>
 
-        <div class="mt-8 flex justify-between">
-            <button class="px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600 transition-all duration-300">Retour</button>
-            <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90 transition-all duration-300">Suivant</button>
-        </div>
-    </div>
-
-    <!-- Étape 3 -->
-    <div>
-        <h2 class="text-2xl font-bold text-white mb-8">Destination Finale</h2>
-        <div class="flex items-center justify-between mb-8">
-            <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-gray-400">1</div>
-            <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-            <div class="w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center text-gray-400">2</div>
-            <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-            <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-500/50">3</div>
-        </div>
-
-        <div class="space-y-6">
-            <div class="space-y-4">
-                <input type="text" placeholder="Destination finale" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
-                
-                <div class="bg-[#262b38] border border-gray-700 rounded-xl p-4">
-                    <h3 class="text-white mb-4">Récapitulatif</h3>
-                    <div class="space-y-2 text-gray-400">
-                        <p>Point de départ: Paris</p>
-                        <p>Villes intermédiaires: Lyon, Dijon</p>
-                        <p>Capacité: 3 colis</p>
-                        <p>Types acceptés: Petits, Moyens</p>
+        <section class="bg-[#1a1f2e] min-h-screen p-8">
+            <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 mb-8 shadow-xl border border-white/10">
+                <h2 class="text-2xl font-bold text-white mb-6">Nouvel Itinéraire</h2>
+        
+                <!-- Progress Bar -->
+                <div class="flex justify-between items-center mb-8">
+                    <div class="step-indicator flex items-center w-full">
+                        <div class="step w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/50" data-step="1">1</div>
+                        <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                        <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center" data-step="2">2</div>
+                        <div class="flex-1 h-1 mx-4 bg-white/10"></div>
+                        <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center" data-step="3">3</div>
+                    </div>
+                </div>
+        
+                <!-- Étape 1 -->
+                <div class="step-content" data-step="1">
+                    <div class="space-y-6">
+                        <input type="text" placeholder="Point de départ" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400">
+                        <input type="text" placeholder="Capacité du véhicule" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400">
+                        <input type="text" placeholder="Types de colis acceptés" class="w-full p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400">
+                    </div>
+                    <div class="mt-8 flex justify-end">
+                        <button class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
+                    </div>
+                </div>
+        
+                <!-- Étape 2 -->
+                <div class="step-content hidden" data-step="2">
+                    <h2 class="text-2xl font-bold text-white mb-6">Villes Intermédiaires</h2>
+                    <div class="space-y-4">
+                        <input type="text" placeholder="Ville intermédiaire 1" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400">
+                        <input type="text" placeholder="Ville intermédiaire 2" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400">
+                    </div>
+                    <div class="mt-8 flex justify-between">
+                        <button class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
+                        <button class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
+                    </div>
+                </div>
+        
+                <!-- Étape 3 -->
+                <div class="step-content hidden" data-step="3">
+                    <h2 class="text-2xl font-bold text-white mb-6">Destination Finale</h2>
+                    <input type="text" placeholder="Destination finale" class="w-full p-4 bg-[#262b38] border border-gray-700 rounded-xl text-white placeholder-gray-400">
+                    <div class="mt-8 flex justify-between">
+                        <button class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
+                        <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Terminer</button>
                     </div>
                 </div>
             </div>
-
-            <div class="flex justify-between">
-                <button class="px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600 transition-all duration-300">Retour</button>
-                <button class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90 transition-all duration-300">Terminer</button>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-        </div>
-
-
-<body class="bg-slate-900 p-8">
+        </section>
+   
+        
+<section class="bg-slate-900 p-8">
     <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/10">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-white">Demandes Récentes</h2>
@@ -256,6 +228,40 @@
     </div>
 </body>
 </html>
-    </div>
-</body>
-</html>
+        </div>
+
+
+     
+        <script>
+            let currentStep = 1;
+            const totalSteps = 3;
+        
+            function updateStep(step) {
+                document.querySelectorAll('.step-content').forEach((content) => {
+                    content.classList.toggle('hidden', content.dataset.step != step);
+                });
+        
+                document.querySelectorAll('.step').forEach((el) => {
+                    el.classList.toggle('bg-purple-600', el.dataset.step == step);
+                    el.classList.toggle('text-white', el.dataset.step == step);
+                    el.classList.toggle('bg-white/10', el.dataset.step != step);
+                });
+        
+                currentStep = step;
+            }
+        
+            document.querySelectorAll('.next-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (currentStep < totalSteps) updateStep(currentStep + 1);
+                });
+            });
+        
+            document.querySelectorAll('.prev-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (currentStep > 1) updateStep(currentStep - 1);
+                });
+            });
+        
+            updateStep(currentStep);
+        </script>
+

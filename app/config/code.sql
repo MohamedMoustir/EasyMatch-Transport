@@ -1,93 +1,110 @@
 CREATE TYPE user_status AS ENUM ('Actif', 'Suspendu');
+CREATE TYPE user_role AS ENUM ('Admin','Expediteur','Conducteur');
+CREATE TYPE enum_status AS ENUM ('En attente', 'Validé', 'Refusé');
+CREATE TYPE vehicule_type AS ENUM ('Voiture', 'Camion');
 
-CREATE TABLE Users (
+
+CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
-    nom VARCHAR(255),
-    prenom VARCHAR(255),
-    email VARCHAR(255),
-    phone VARCHAR(50),
-    password VARCHAR(255),
-    status VARCHAR(50),
-    date_inscription DATETIME,
-    isVerified BOOLEAN DEFAULT 0
+    nom VARCHAR(50) NOT NULL,
+    prenom VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role user_role NOT NULL,
+    status user_status DEFAULT 'Actif',
+    isVerified BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE Conducteur (
-    id_conducteur INT PRIMARY KEY,
-    permis VARCHAR(15),
-    FOREIGN KEY (id) REFERENCES Users(id)
+CREATE TABLE conducteurs(
+    id_conducteur INT PRIMARY KEY NOT NULL,
+    permis VARCHAR(15) NOT NULL,
+    FOREIGN KEY (id_conducteur) REFERENCES users(id_user)
 );
 
-CREATE TABLE Vehicle (
-    id INT PRIMARY KEY,
-    matricule VARCHAR(255),
-    marque VARCHAR(255),
-    type VARCHAR(255),
-    utilite INT,
-    FOREIGN KEY (utilite) REFERENCES Conducteur(id)
+CREATE TABLE vehicules(
+    id_vehicule SERIAL PRIMARY KEY,
+    immatriculation VARCHAR(25) NOT NULL,
+    marque VARCHAR(50) NOT NULL,
+    type vehicule_type NOT NULL,
+    coffre INT NOT NULL,
+    id_conducteur INT NOT NULL,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur)
 );
 
-CREATE TABLE Annonce (
-    id INT PRIMARY KEY,
-    titre VARCHAR(255),
-    date_publication DATETIME,
-    conducteur_id INT,
-    FOREIGN KEY (conducteur_id) REFERENCES Conducteur(id)
+CREATE TABLE annonces(
+    id_annonce SERIAL PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    couverture VARCHAR(255) NOT NULL,
+    status enum_status DEFAULT 'En attente',
+    date_publication TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_conducteur INT NOT NULL,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur)
 );
 
-CREATE TABLE Reviews (
-    id INT PRIMARY KEY,
-    commentaire TEXT,
-    rating INT,
-    date_soumission DATETIME,
-    expediteur_id INT,
-    FOREIGN KEY (expediteur_id) REFERENCES Expediteur(id)
+CREATE TABLE reviews(
+    id_review SERIAL PRIMARY KEY,
+    rating INT NOT NULL,
+    commentaire TEXT NOT NULL,
+    status enum_status DEFAULT 'En attente',
+    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_conducteur INT NOT NULL,
+    id_expediteur INT NOT NULL,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur),
+    FOREIGN KEY (id_expediteur) REFERENCES users(id_user)
 );
 
-CREATE TABLE Marchandise (
-    id INT PRIMARY KEY,
-    date_livraison DATETIME,
-    dimension VARCHAR(255)
+CREATE TABLE marchandises(
+    id_marchandise SERIAL PRIMARY KEY,
+    dimension REAL NOT NULL,
+    id_expediteur INT NOT NULL,
+    FOREIGN KEY (id_expediteur) REFERENCES users(id_user)
 );
 
-CREATE TABLE Commande (
-    id INT PRIMARY KEY,
-    date_ville VARCHAR(255),
-    statut VARCHAR(50),
-    date_envoi DATETIME,
-    date_livraison DATETIME,
-    marchandise_id INT,
-    FOREIGN KEY (marchandise_id) REFERENCES Marchandise(id)
+CREATE TABLE villes(
+    id_ville SERIAL PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL,
+    region VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE Trajet (
-    id INT PRIMARY KEY,
-    ville_depart VARCHAR(255),
-    ville_arrive VARCHAR(255),
-    date_depart DATETIME,
-    date_arrive DATETIME,
-    conducteur_id INT,
-    FOREIGN KEY (conducteur_id) REFERENCES Conducteur(id)
+CREATE TABLE trajets(
+    id_trajet SERIAL PRIMARY KEY,
+    ville_depart INT NOT NULL,
+    ville_arrivee INT NOT NULL,
+    date_depart TIMESTAMP NOT NULL,
+    date_arrivee TIMESTAMP NOT NULL,
+    id_conducteur INT NOT NULL,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur),
+    FOREIGN KEY (ville_depart) REFERENCES villes(id_ville),
+    FOREIGN KEY (ville_arrivee) REFERENCES villes(id_ville)
 );
 
-CREATE TABLE Etape (
-    id INT PRIMARY KEY,
-    nom_ville VARCHAR(255),
-    ordre INT,
-    trajet_id INT,
-    FOREIGN KEY (trajet_id) REFERENCES Trajet(id)
+CREATE TABLE etapes(
+    id_etape SERIAL PRIMARY KEY,
+    id_trajet INT NOT NULL,
+    ville_etape INT NOT NULL,
+    ordre INT NOT NULL,
+    FOREIGN KEY (id_trajet) REFERENCES trajets(id_trajet),
+    FOREIGN KEY (ville_etape) REFERENCES villes(id_ville)
 );
 
-CREATE TABLE Ville (
-    id INT PRIMARY KEY,
-    code VARCHAR(50),
-    region VARCHAR(255)
+CREATE TABLE commandes(
+    id_commande SERIAL PRIMARY KEY,
+    id_marchandise INT NOT NULL,
+    id_etape INT NOT NULL,
+    status enum_status DEFAULT 'En attente',
+    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise),
+    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape)
 );
 
-CREATE TABLE NotificationBehavior (
-    id INT PRIMARY KEY,
-    title VARCHAR(255),
-    content TEXT,
-    type VARCHAR(50),
-    date_envoi DATETIME
+CREATE TABLE notifications(
+    id_notifictaion SERIAL PRIMARY KEY,
+    titre VARCHAR(255) NOT NULL,
+    contenu TEXT NOT NULL,
+    date_envoi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    id_recepteur INT NOT NULL,
+    FOREIGN KEY (id_recepteur) REFERENCES users(id_user)
 );
