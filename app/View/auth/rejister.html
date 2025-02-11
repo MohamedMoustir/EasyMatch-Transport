@@ -14,109 +14,58 @@
             <p class="text-gray-500">Join our community today</p>
         </div>
 
-        <form class="space-y-6">
-            <!-- Full Name -->
+        <form class="space-y-6" method="post">
+            <!-- Nom -->
             <div>
-                <label class="block text-gray-700 text-sm font-semibold mb-2">Full Name</label>
-                <div class="relative">
-                    <input type="text" 
-                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                           placeholder="John Doe">
-                    <i class="fas fa-user absolute right-3 top-3 text-gray-400"></i>
-                </div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Nom</label>
+                <input type="text" name="nom" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Dupont">
             </div>
 
-            <!-- Email Input -->
+            <!-- Prénom -->
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Prénom</label>
+                <input type="text" name="prenom" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="Jean">
+            </div>
+
+            <!-- Téléphone -->
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Téléphone</label>
+                <input type="tel" name="phone" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="+33 6 12 34 56 78">
+            </div>
+
+            <!-- Email -->
             <div>
                 <label class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
-                <div class="relative">
-                    <input type="email" 
-                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                           placeholder="john@example.com">
-                    <i class="fas fa-envelope absolute right-3 top-3 text-gray-400"></i>
-                </div>
+                <input type="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="jean.dupont@example.com">
             </div>
 
-            <!-- Password Input -->
+            <!-- Mot de passe -->
             <div>
-                <label class="block text-gray-700 text-sm font-semibold mb-2">Password</label>
-                <div class="relative">
-                    <input type="password" 
-                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                           placeholder="••••••••">
-                    <i class="fas fa-lock absolute right-3 top-3 text-gray-400"></i>
-                </div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Mot de passe</label>
+                <input type="password" name="password" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500" placeholder="••••••••">
             </div>
 
-            <!-- Confirm Password -->
+            <!-- Rôle -->
             <div>
-                <label class="block text-gray-700 text-sm font-semibold mb-2">Confirm Password</label>
-                <div class="relative">
-                    <input type="password" 
-                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                           placeholder="••••••••">
-                    <i class="fas fa-lock absolute right-3 top-3 text-gray-400"></i>
-                </div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Rôle</label>
+                <select name="role" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    <option value="Expediteur">Expéditeur</option>
+                    <option value="Conducteur">Conducteur</option>
+                </select>
             </div>
 
-            <!-- Phone Number -->
-            <div>
-                <label class="block text-gray-700 text-sm font-semibold mb-2">Phone Number</label>
-                <div class="relative">
-                    <input type="tel" 
-                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
-                           placeholder="+1 234 567 890">
-                    <i class="fas fa-phone absolute right-3 top-3 text-gray-400"></i>
-                </div>
-            </div>
-
-            <!-- Terms Checkbox -->
+            <!-- Checkbox des conditions -->
             <div class="flex items-center">
-                <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                <input type="checkbox" required class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
                 <label class="ml-2 text-sm text-gray-600">
-                    I agree to the <a href="#" class="text-blue-600 hover:text-blue-800">Terms of Service</a> and 
-                    <a href="#" class="text-blue-600 hover:text-blue-800">Privacy Policy</a>
+                    J'accepte les <a href="#" class="text-blue-600 hover:text-blue-800">conditions d'utilisation</a> et la <a href="#" class="text-blue-600 hover:text-blue-800">politique de confidentialité</a>
                 </label>
             </div>
 
-            <!-- Register Button -->
-            <button type="submit" 
-                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
-                Create Account
+            <!-- Bouton d'inscription -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                Créer un compte
             </button>
-
-            <!-- Social Login -->
-            <div class="mt-6">
-                <div class="relative">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-2 bg-white text-gray-500">Or sign up with</span>
-                    </div>
-                </div>
-
-                <div class="mt-6 grid grid-cols-3 gap-3">
-                    <button type="button" 
-                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
-                        <i class="fab fa-google text-red-600"></i>
-                    </button>
-                    <button type="button" 
-                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
-                        <i class="fab fa-facebook text-blue-600"></i>
-                    </button>
-                    <button type="button" 
-                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
-                        <i class="fab fa-apple text-gray-800"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Login Link -->
-            <p class="mt-8 text-center text-gray-600">
-                Already have an account? 
-                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Sign in</a>
-            </p>
         </form>
     </div>
 </body>
