@@ -64,89 +64,7 @@
           </div>
         </div>
       </div>
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                Carint
-              </span>
-            </a>
-            <div class="max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8">
-              <h2 class="text-2xl text-emerald-400 font-normal mb-8">
-                Calculer le prix d'envoi
-              </h2>
-              
-              <div class="space-y-6">
-                <!-- Distance -->
-                <div class="space-y-2">
-                  <label class="text-gray-700">Distance</label>
-                  <div class="relative">
-                    <select class="w-full px-3 py-2 border rounded bg-white appearance-none">
-                      <option>100 à 500 Km</option>
-                    </select>
-                  </div>
-                </div>
-            
-                <!-- Package Size -->
-                <div class="space-y-2">
-                  <label class="text-gray-700">Taille du colis</label>
-                  <div class="relative">
-                    <input type="text" value="L (tv, micro onde,)" class="w-full px-3 py-2 border rounded bg-white" readonly>
-                  </div>
-                </div>
-            
-                <!-- Estimated Price -->
-                <div class="space-y-2">
-                  <label class="text-gray-700">Prix estimé</label>
-                  <div class="relative">
-                    <div class="w-full px-3 py-2 border rounded bg-white flex items-center">
-                      <span class="text-emerald-600 mr-2">✓</span>
-                      <span>40€</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
-              <p class="text-gray-600 text-sm mt-4">
-                Ce prix est une estimation. Vous serez libre de choisir le prix que vous souhaitez lors de la publication de votre annonce de colis.
-              </p>
-            
-              <button class="w-full bg-emerald-400 text-white rounded-full py-3 mt-8 hover:bg-emerald-500 transition-colors">
-                Envoyer mon colis
-              </button>
-            </div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service.html">Services</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html"> About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
-                </li>
-                <form class="form-inline">
-                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </form>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <!--  -->
     
     </header>
     <!-- end header section -->
@@ -238,106 +156,162 @@
 
   <!-- service section -->
 
-  <section class="service_section layout_padding">
-    <div class="service_container">
-      <div class="container ">
-        <div class="heading_container">
-          <h2>
-            Our <span>Services</span>
-          </h2>
-          <p>
-            There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
-          </p>
-        </div>
-        <div class="row">
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s1.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Air Transport
-                </h5>
-                <p>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The
-                  point of using
-                </p>
-                <a href="">
-                  Read More
-                </a>
-              </div>
-            </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+  
+  <div class="w-full max-w-screen-xl mx-auto p-8">
+      <h2 class="text-3xl font-bold text-center text-white mb-12">EasyMatch Transport Annonces</h2>
+  
+      <!-- Filter Section -->
+      <div class="flex justify-between items-center mb-8">
+          <div class="flex items-center space-x-4">
+              <!-- Filter by City -->
+              <select class="bg-white text-black px-4 py-2 rounded-md shadow-md focus:outline-none">
+                  <option value="" disabled selected>Filtrer par Ville</option>
+                  <option value="Paris">Paris</option>
+                  <option value="Lyon">Lyon</option>
+                  <option value="Marseille">Marseille</option>
+                  <option value="Bordeaux">Bordeaux</option>
+                  <option value="Nantes">Nantes</option>
+                  <option value="Toulouse">Toulouse</option>
+              </select>
+  
+              <!-- Filter by Capacity -->
+              <select class="bg-white text-black px-4 py-2 rounded-md shadow-md focus:outline-none">
+                  <option value="" disabled selected>Filtrer par Capacité</option>
+                  <option value="3">3 colis</option>
+                  <option value="5">5 colis</option>
+                  <option value="6">6 colis</option>
+              </select>
           </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s2.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Cargo Transport
-                </h5>
-                <p>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The
-                  point of using
-                </p>
-                <a href="">
-                  Read More
-                </a>
-              </div>
-            </div>
+          <div class="flex items-center space-x-4">
+              <!-- Sort by Date -->
+              <select class="bg-white text-black px-4 py-2 rounded-md shadow-md focus:outline-none">
+                  <option value="" disabled selected>Trier par Date</option>
+                  <option value="asc">Date croissante</option>
+                  <option value="desc">Date décroissante</option>
+              </select>
           </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s3.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Trucks Transport
-                </h5>
-                <p>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The
-                  point of using
-                </p>
-                <a href="">
-                  Read More
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s4.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Train Transport
-                </h5>
-                <p>
-                  fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                  The
-                  point of using
-                </p>
-                <a href="">
-                  Read More
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
+  
+      <!-- Cards Section -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+          <!-- Card 1 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Itinéraire Paris - Lyon</h3>
+              <p class="text-sm mb-4">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
+              <p class="text-sm mb-4">Date de départ: 15 Février 2025</p>
+              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
+          </div>
+  
+          <!-- Card 2 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Itinéraire Lyon - Marseille</h3>
+              <p class="text-sm mb-4">Capacité: 5 colis | Types acceptés: Moyens, Grands</p>
+              <p class="text-sm mb-4">Date de départ: 18 Février 2025</p>
+              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-[#0a97b0] transition-all duration-300" id="openModalBtn">Voir Détails</button>
+          </div>
+  
+          <!-- Card 3 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Itinéraire Marseille - Bordeaux</h3>
+              <p class="text-sm mb-4">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
+              <p class="text-sm mb-4">Date de départ: 20 Février 2025</p>
+              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
+          </div>
+  
+          <!-- Card 4 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+            <h3 class="text-xl font-semibold mb-4">Itinéraire Marseille - Bordeaux</h3>
+            <p class="text-sm mb-4">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
+            <p class="text-sm mb-4">Date de départ: 20 Février 2025</p>
+            <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
+        </div>
+  
+          <!-- Card 5 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Itinéraire Bordeaux - Toulouse</h3>
+              <p class="text-sm mb-4">Capacité: 6 colis | Types acceptés: Grands, Fragiles</p>
+              <p class="text-sm mb-4">Date de départ: 25 Février 2025</p>
+              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
+          </div>
+  
+          <!-- Card 6 -->
+          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+              <h3 class="text-xl font-semibold mb-4">Itinéraire Toulouse - Nice</h3>
+              <p class="text-sm mb-4">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
+              <p class="text-sm mb-4">Date de départ: 28 Février 2025</p>
+              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
+          </div>
+      </div>
+  
+      <!-- Pagination Section -->
+      <div class="mt-8 flex justify-center">
+          <nav class="flex space-x-4">
+              <button class="px-4 py-2 bg-[#0a97b0] text-white rounded-lg hover:bg-purple-800 transition-all duration-300" disabled>
+                  &laquo; Précédent
+              </button>
+              <button class="px-4 py-2 bg-[#0a97b0] text-white rounded-lg hover:bg-purple-800 transition-all duration-300">1</button>
+              <button class="px-4 py-2 bg-[#0a97b0] text-white rounded-lg hover:bg-purple-800 transition-all duration-300">2</button>
+              <button class="px-4 py-2 bg-[#0a97b0] text-white rounded-lg hover:bg-purple-800 transition-all duration-300">3</button>
+              <button class="px-4 py-2 bg-[#0a97b0] text-white rounded-lg hover:bg-purple-800 transition-all duration-300">
+                  Suivant &raquo;
+              </button>
+          </nav>
+      </div>
+  </div>
+  
     </div>
-  </section>
+  
 
-  <!-- end service section -->
-
-
+ 
+  
+  <!-- Modal (Popup) -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+      <div class="bg-white text-black p-8 rounded-lg max-w-2xl w-full">
+          <h3 class="text-2xl font-semibold mb-4">Itinéraire Marseille - Bordeaux</h3>
+          <p class="text-sm mb-4">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
+          <p class="text-sm mb-4">Date de départ: 20 Février 2025</p>
+          <p class="text-sm mb-4">Description: Ce trajet relie Marseille à Bordeaux avec une capacité limitée à 2 colis. Les types de colis acceptés incluent les colis de petite taille et fragiles. Parfait pour les envois nécessitant une attention particulière.</p>
+          
+          <h4 class="text-xl font-semibold mt-6 mb-4">Informations supplémentaires</h4>
+          <ul class="list-disc pl-6">
+              <li>Distance: 500 km</li>
+              <li>Durée estimée: 6 heures</li>
+              <li>Conducteur: Jean Dupont (note: 4.5/5)</li>
+              <li>Conditions spéciales: Colis fragiles nécessitant un emballage sécurisé</li>
+          </ul>
+  
+          <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">
+              Réserver Maintenant
+          </button>
+  
+          <!-- Close Button -->
+          <button id="closeModalBtn" class="mt-4 text-white bg-red-600 px-4 py-2 rounded-lg hover:bg-red-700 transition-all duration-300">
+              Fermer
+          </button>
+      </div>
+  </div>
+  
+  <script>
+      // Open Modal
+      document.getElementById("openModalBtn").addEventListener("click", function() {
+          document.getElementById("modal").classList.remove("hidden");
+      });
+  
+      // Close Modal
+      document.getElementById("closeModalBtn").addEventListener("click", function() {
+          document.getElementById("modal").classList.add("hidden");
+      });
+  
+      // Close Modal on background click
+      document.getElementById("modal").addEventListener("click", function(event) {
+          if (event.target === this) {
+              document.getElementById("modal").classList.add("hidden");
+          }
+      });
+  </script>
+  
   <!-- about section -->
 
   <section class="about_section layout_padding-bottom">

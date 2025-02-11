@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-[#0B1437] min-h-screen">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-64 h-screen bg-[#111C44] p-4 fixed">
+            <div class="flex items-center space-x-2 mb-8">
+                <svg class="w-8 h-8 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"/>
+                </svg>
+                <span class="text-white text-xl font-semibold">Dashboard</span>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <span>Analytics</span>
+                </div>
+                <!-- Other menu items -->
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="ml-64 p-8 w-full">
+            <!-- Top Stats -->
+            <div class="grid grid-cols-4 gap-6 mb-8">
+                <div class="bg-[#111C44] p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Total Sales</span>
+                        <span class="text-purple-500">▼</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-2xl font-bold text-white">50.8K</span>
+                        <span class="ml-2 text-green-500 text-sm">+2.6%</span>
+                    </div>
+                </div>
+                <div class="bg-[#111C44] p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Total Users</span>
+                        <span class="text-purple-500">▼</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-2xl font-bold text-white">23.6K</span>
+                        <span class="ml-2 text-red-500 text-sm">-1.2%</span>
+                    </div>
+                </div>
+                <div class="bg-[#111C44] p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Active Now</span>
+                        <span class="text-purple-500">▼</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-2xl font-bold text-white">756</span>
+                        <span class="ml-2 text-green-500 text-sm">+0.8%</span>
+                    </div>
+                </div>
+                <div class="bg-[#111C44] p-4 rounded-xl">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-400">Average Time</span>
+                        <span class="text-purple-500">▼</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-2xl font-bold text-white">2.3K</span>
+                        <span class="ml-2 text-green-500 text-sm">+1.4%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-2 gap-6 mb-8">
+                <!-- Circular Progress -->
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-white font-medium">Website Visitors</h3>
+                        <button class="text-purple-500">Export</button>
+                    </div>
+                    <div class="flex justify-center">
+                        <canvas id="circularProgress" width="200" height="200"></canvas>
+                    </div>
+                </div>
+
+                <!-- Bar Chart -->
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-white font-medium">Monthly Revenue</h3>
+                        <button class="text-purple-500">Details</button>
+                    </div>
+                    <canvas id="barChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Table Section -->
+            <div class="bg-[#111C44] rounded-xl p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-white font-medium">Orders Status</h3>
+                    <div class="flex space-x-4">
+                        <input type="text" placeholder="Search..." class="bg-[#1B254B] text-white px-4 py-2 rounded-lg text-sm">
+                        <button class="bg-purple-500 text-white px-4 py-2 rounded-lg text-sm">Add New</button>
+                    </div>
+                </div>
+                <table class="w-full">
+                    <thead>
+                        <tr class="text-gray-400 text-left">
+                            <th class="pb-4">ORDER ID</th>
+                            <th class="pb-4">CUSTOMER</th>
+                            <th class="pb-4">DATE</th>
+                            <th class="pb-4">STATUS</th>
+                            <th class="pb-4">AMOUNT</th>
+                            <th class="pb-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white">
+                        <tr class="border-t border-[#1B254B]">
+                            <td class="py-4">#8301</td>
+                            <td class="py-4">Sarah Peterson</td>
+                            <td class="py-4">Jan 25, 2024</td>
+                            <td class="py-4">
+                                <span class="px-3 py-1 bg-green-500/20 text-green-500 rounded-full text-xs">Completed</span>
+                            </td>
+                            <td class="py-4">$150.00</td>
+                            <td class="py-4 text-right">⋮</td>
+                        </tr>
+                        <tr class="border-t border-[#1B254B]">
+                            <td class="py-4">#8302</td>
+                            <td class="py-4">Mark Wilson</td>
+                            <td class="py-4">Jan 27, 2024</td>
+                            <td class="py-4">
+                                <span class="px-3 py-1 bg-yellow-500/20 text-yellow-500 rounded-full text-xs">Pending</span>
+                            </td>
+                            <td class="py-4">$245.00</td>
+                            <td class="py-4 text-right">⋮</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Circular Progress Chart
+        const circularCtx = document.getElementById('circularProgress').getContext('2d');
+        new Chart(circularCtx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#8B5CF6', '#1B254B'],
+                    borderWidth: 0,
+                    cutout: '80%'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Initialize Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [65, 59, 80, 81, 56, 55],
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            color: '#1B254B'
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Back</h1>
+            <p class="text-gray-500">Please sign in to continue</p>
+        </div>
+
+        <form class="space-y-6">
+            <!-- Email Input -->
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+                <div class="relative">
+                    <input type="email" 
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                           placeholder="Enter your email">
+                    <i class="fas fa-envelope absolute right-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Password Input -->
+            <div>
+                <label class="block text-gray-700 text-sm font-semibold mb-2">Password</label>
+                <div class="relative">
+                    <input type="password" 
+                           class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500"
+                           placeholder="Enter your password">
+                    <i class="fas fa-lock absolute right-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Remember Me & Forgot Password -->
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                    <label class="ml-2 text-sm text-gray-600">Remember me</label>
+                </div>
+                <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Forgot Password?</a>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" 
+                    class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                Sign In
+            </button>
+
+            <!-- Social Login -->
+            <div class="mt-6">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-300"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <button type="button" 
+                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
+                        <i class="fab fa-google text-red-600"></i>
+                    </button>
+                    <button type="button" 
+                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
+                        <i class="fab fa-facebook text-blue-600"></i>
+                    </button>
+                    <button type="button" 
+                            class="w-full flex items-center justify-center p-2 border rounded-lg hover:bg-gray-50">
+                        <i class="fab fa-github text-gray-800"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sign Up Link -->
+            <p class="mt-8 text-center text-gray-600">
+                Don't have an account? 
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Sign up</a>
+            </p>
+        </form>
+    </div>
+</body>
+</html>
