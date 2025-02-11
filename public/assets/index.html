@@ -37,31 +37,52 @@
 
 <body>
 
+    
+  </body>
+  </html>
   <div class="hero_area">
     <!-- header section strats -->
     <header class="header_section">
       <div class="header_top">
         <div class="container-fluid ">
-          <div class="contact_nav">
-            <a href="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call : +01 123455678990
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>
-                Email : demo@gmail.com
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Location
-              </span>
-            </a>
+          <nav class=" border-gray-200 px-4 lg:px-6 py-4">
+          <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+              <!-- Logo and Brand -->
+              <div class="flex items-center">
+                  <a href="#" class="flex items-center">
+                      <!-- Logo circle -->
+                      <div class="bg-blue-600 w-8 h-8 rounded-full flex items-center justify-center mr-2">
+                          <!-- Play icon -->
+                          <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                          </svg>
+                      </div>
+                      <span class="self-center text-white font-semibold whitespace-nowrap">Flowbite</span>
+                  </a>
+              </div>
+  
+              <!-- Navigation Links -->
+              <div class="flex items-center lg:order-1">
+                  <ul class="flex flex-row mt-0 space-x-8 text-sm font-medium">
+                      <li>
+                          <a href="#" class="text-white" aria-current="page">Home</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-white hover:text-blue-600">About</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-white hover:text-blue-600">Services</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-white hover:text-blue-600">Contact</a>
+                      </li>
+                  </ul>
+                  <a href="#" class="text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 ml-8">
+                      Get started
+                  </a>
+              </div>
           </div>
+      </nav>
         </div>
       </div>
       <!--  -->
@@ -194,57 +215,54 @@
           </div>
       </div>
   
-      <!-- Cards Section -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-semibold mb-4">Itinéraire Paris - Lyon</h3>
-              <p class="text-sm mb-4">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
-              <p class="text-sm mb-4">Date de départ: 15 Février 2025</p>
-              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
-          </div>
-  
-          <!-- Card 2 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-semibold mb-4">Itinéraire Lyon - Marseille</h3>
-              <p class="text-sm mb-4">Capacité: 5 colis | Types acceptés: Moyens, Grands</p>
-              <p class="text-sm mb-4">Date de départ: 18 Février 2025</p>
-              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-[#0a97b0] transition-all duration-300" id="openModalBtn">Voir Détails</button>
-          </div>
-  
-          <!-- Card 3 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-semibold mb-4">Itinéraire Marseille - Bordeaux</h3>
-              <p class="text-sm mb-4">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
-              <p class="text-sm mb-4">Date de départ: 20 Février 2025</p>
-              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
-          </div>
-  
-          <!-- Card 4 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold mb-4">Itinéraire Marseille - Bordeaux</h3>
-            <p class="text-sm mb-4">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
-            <p class="text-sm mb-4">Date de départ: 20 Février 2025</p>
-            <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
-        </div>
-  
-          <!-- Card 5 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-semibold mb-4">Itinéraire Bordeaux - Toulouse</h3>
-              <p class="text-sm mb-4">Capacité: 6 colis | Types acceptés: Grands, Fragiles</p>
-              <p class="text-sm mb-4">Date de départ: 25 Février 2025</p>
-              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
-          </div>
-  
-          <!-- Card 6 -->
-          <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
-              <h3 class="text-xl font-semibold mb-4">Itinéraire Toulouse - Nice</h3>
-              <p class="text-sm mb-4">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
-              <p class="text-sm mb-4">Date de départ: 28 Février 2025</p>
-              <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300" id="openModalBtn">Voir Détails</button>
-          </div>
-      </div>
-  
+     <!-- Cards Section -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+  <!-- Card 1 -->
+  <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Transport Paris - Lyon" class="w-full h-40 object-cover rounded-t-lg">
+      <h3 class="text-xl font-semibold mt-4">Itinéraire Paris - Lyon</h3>
+      <p class="text-sm mb-2">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
+      <p class="text-sm mb-2">Date de départ: 15 Février 2025</p>
+      <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">Voir Détails</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Transport Lyon - Marseille" class="w-full h-40 object-cover rounded-t-lg">
+      <h3 class="text-xl font-semibold mt-4">Itinéraire Lyon - Marseille</h3>
+      <p class="text-sm mb-2">Capacité: 5 colis | Types acceptés: Moyens, Grands</p>
+      <p class="text-sm mb-2">Date de départ: 18 Février 2025</p>
+      <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">Voir Détails</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Transport Marseille - Bordeaux" class="w-full h-40 object-cover rounded-t-lg">
+      <h3 class="text-xl font-semibold mt-4">Itinéraire Marseille - Bordeaux</h3>
+      <p class="text-sm mb-2">Capacité: 2 colis | Types acceptés: Petits, Fragiles</p>
+      <p class="text-sm mb-2">Date de départ: 20 Février 2025</p>
+      <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">Voir Détails</button>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg">
+      <img src="https://via.placeholder.com/300x200" alt="Transport Bordeaux - Toulouse" class="w-full h-40 object-cover rounded-t-lg">
+      <h3 class="text-xl font-semibold mt-4">Itinéraire Bordeaux - Toulouse</h3>
+      <p class="text-sm mb-2">Capacité: 6 colis | Types acceptés: Grands, Fragiles</p>
+      <p class="text-sm mb-2">Date de départ: 25 Février 2025</p>
+      <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">Voir Détails</button>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="max-w-sm mx-auto bg-white text-black p-6 rounded-lg shadow-lg" id="openModalBtn">
+      <img src="https://via.placeholder.com/300x200" alt="Transport Toulouse - Nice" class="w-full h-40 object-cover rounded-t-lg">
+      <h3 class="text-xl font-semibold mt-4">Itinéraire Toulouse - Nice</h3>
+      <p class="text-sm mb-2">Capacité: 3 colis | Types acceptés: Petits, Moyens</p>
+      <p class="text-sm mb-2">Date de départ: 28 Février 2025</p>
+      <button class="w-full bg-[#0a97b0] text-white rounded-lg py-2 mt-4 hover:bg-purple-800 transition-all duration-300">Voir Détails</button>
+  </div>
+</div>
+
       <!-- Pagination Section -->
       <div class="mt-8 flex justify-center">
           <nav class="flex space-x-4">
