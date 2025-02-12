@@ -1,94 +1,34 @@
 <?php
+require_once  '../../Core/Database.php';
 
-class User{
-    // Properties
-    protected ?int $id;
-    protected ?string $nom;
-    protected ?string $prenom;
-    protected ?string $email;
-    protected ?string $phone;
-    protected ?string $password;
-    protected ?string $role;
-    protected ?string $date_creation;
-    protected ?string $status = 'Actif';
-    protected ?bool $isVerified = false;
-    private $database;
+class User {
+    private $pdo;
 
-    // Constructor
-    public function __construct($id,$nom,$prenom,$email,$phone,$password,$role,$date_creation,$status,$isVerified){
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->email = $email;
-        $this->phone = $phone;
-        $this->password = $password;
-        $this->role = $role;
-        $this->date_creation = $date_creation;
-        $this->status = $status;
-        $this->isVerified = $isVerified;
+    public function __construct() {
+        $database = Database::getInstance();
+        $this->pdo = $database->getConnection();
     }
 
+    public function register($nom, $prenom, $phone, $email, $password, $role) {
+        try {
+            $sql = "INSERT INTO users (nom, prenom, phone, email, password, role)VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $this->pdo->prepare($sql);
 
-    // Getters
-    public function getId(){
-        return $this->id;
-    }
-    public function getNom(){
-        return $this->nom;
-    }
-    public function getPrenom(){
-        return $this->prenom;
-    }
-    public function getEmail(){
-        return $this->email;
-    }
-    public function getPhone(){
-        return $this->phone;
-    }
-    public function getPassword(){
-        return $this->password;
-    }
-    public function getRole(){
-        return $this->role;
-    }
-    public function getDateCreation(){
-        return $this->date_creation;
-    }
-    public function getStatus(){
-        return $this->status;
-    }
-    public function getIsVerified(){
-        return $this->isVerified;
-    }
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+            $params = [$nom, $prenom, $phone, $email, $hashedPassword, $role];
 
-    // Setters
-    public function setNom($nom){
-        $this->nom = $nom;
-    }
-    public function setPrenom($prenom){
-        $this->prenom = $prenom;
-    }
-    public function setEmail($email){
-        $this->email = $email;
-    }
-    public function setPhone($phone){
-        $this->phone = $phone;
-    }
-    public function setPassword($password){
-        $this->password = $password;
-    }
-    public function setRole($role){
-        $this->role = $role;
-    }
-    public function setDateCreation($date_creation){
-        $this->date_creation = $date_creation;
-    }
-    public function setStatus($status){
-        $this->status = $status;
-    }
+            if ($stmt->execute($params)) {
+                error_log("Inscription réussie pour ");
+            } else {
+                error_log("Échec d'insertion: " . json_encode($stmt->errorInfo()));
+            }
 
-
-    // Methods
+        } catch (PDOException $e) {
+            error_log("PDO Exception: " . $e->getMessage());
+            return false;
+        }
+    }
     
 }
+?>

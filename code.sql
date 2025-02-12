@@ -108,3 +108,4 @@ CREATE TABLE notifications(
     id_recepteur INT NOT NULL,
     FOREIGN KEY (id_recepteur) REFERENCES users(id_user)
 );
+

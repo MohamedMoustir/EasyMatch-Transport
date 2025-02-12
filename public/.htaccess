@@ -1,8 +1,9 @@
 RewriteEngine On
+RewriteBase /EasyMatch-Transport/
 
-#accept loading of actual files and directories
+# If the requested file or directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-#send everything else to the index page
-RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+# Rewrite all requests to index.php
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
