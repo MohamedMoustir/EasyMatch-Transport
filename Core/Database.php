@@ -8,7 +8,7 @@ class Database {
 
         $host = "localhost";
         $port = "5432";
-        $dbname = "cabinet";
+        $dbname = "transpotrt";
         $user = "postgres";
         $pass = "laragon";
  
