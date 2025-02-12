@@ -69,6 +69,10 @@ CREATE TABLE villes(
     region VARCHAR(50) NOT NULL
 );
 
+ALTER TABLE villes 
+ADD COLUMN lat DECIMAL(9,6) NOT NULL,  
+ADD COLUMN lon DECIMAL(9,6) NOT NULL;
+
 CREATE TABLE trajets(
     id_trajet SERIAL PRIMARY KEY,
     ville_depart INT NOT NULL,
