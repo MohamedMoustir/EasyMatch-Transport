@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard</title>
+    <title>Admin Dashboard</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 <body class="bg-[#0B1437] min-h-screen">
     <div class="flex">
@@ -17,165 +16,139 @@
                 <svg class="w-8 h-8 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"/>
                 </svg>
-                <span class="text-white text-xl font-semibold">Dashboard</span>
+                <span class="text-white text-xl font-semibold">Admin Dashboard</span>
             </div>
             <div class="space-y-4">
-                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3">
+                <!-- Conducteur -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                     </svg>
-                    <span>Analytics</span>
+                    <span>Conducteur</span>
                 </div>
-                <!-- Other menu items -->
+                <!-- Expéditeur -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>Expéditeur</span>
+                </div>
+                <!-- Review -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                    </svg>
+                    <span>Review</span>
+                </div>
+                <!-- Annonces -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                    </svg>
+                    <span>Annonces</span>
+                </div>
+                <!-- Statistiques -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                    <span>Statistiques</span>
+                </div>
+                <!-- Historique -->
+                <div class="bg-[#1B254B] text-white p-3 rounded-lg flex items-center space-x-3 cursor-pointer">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span>Historique</span>
+                </div>
             </div>
         </div>
 
         <!-- Main Content -->
         <div class="ml-64 p-8 w-full">
-            <!-- Top Stats -->
-            <div class="grid grid-cols-4 gap-6 mb-8">
-                <div class="bg-[#111C44] p-4 rounded-xl">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">Total Sales</span>
-                        <span class="text-purple-500">▼</span>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-2xl font-bold text-white">50.8K</span>
-                        <span class="ml-2 text-green-500 text-sm">+2.6%</span>
-                    </div>
-                </div>
-                <div class="bg-[#111C44] p-4 rounded-xl">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">Total Users</span>
-                        <span class="text-purple-500">▼</span>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-2xl font-bold text-white">23.6K</span>
-                        <span class="ml-2 text-red-500 text-sm">-1.2%</span>
-                    </div>
-                </div>
-                <div class="bg-[#111C44] p-4 rounded-xl">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">Active Now</span>
-                        <span class="text-purple-500">▼</span>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-2xl font-bold text-white">756</span>
-                        <span class="ml-2 text-green-500 text-sm">+0.8%</span>
-                    </div>
-                </div>
-                <div class="bg-[#111C44] p-4 rounded-xl">
-                    <div class="flex justify-between items-center">
-                        <span class="text-gray-400">Average Time</span>
-                        <span class="text-purple-500">▼</span>
-                    </div>
-                    <div class="mt-2">
-                        <span class="text-2xl font-bold text-white">2.3K</span>
-                        <span class="ml-2 text-green-500 text-sm">+1.4%</span>
+            <!-- Conducteur Section -->
+            <div id="conducteur" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Conducteur</h2>
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <p class="text-gray-400">Gestion des conducteurs et de leurs annonces.</p>
+                    <!-- Placeholder for Conducteur Data -->
+                    <div class="mt-4">
+                        <div class="text-white">Liste des conducteurs...</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts Section -->
-            <div class="grid grid-cols-2 gap-6 mb-8">
-                <!-- Circular Progress -->
+            <!-- Expéditeur Section -->
+            <div id="expediteur" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Expéditeur</h2>
                 <div class="bg-[#111C44] p-6 rounded-xl">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-white font-medium">Website Visitors</h3>
-                        <button class="text-purple-500">Export</button>
+                    <p class="text-gray-400">Gestion des expéditeurs et de leurs demandes.</p>
+                    <!-- Placeholder for Expéditeur Data -->
+                    <div class="mt-4">
+                        <div class="text-white">Liste des expéditeurs...</div>
                     </div>
-                    <div class="flex justify-center">
-                        <canvas id="circularProgress" width="200" height="200"></canvas>
-                    </div>
-                </div>
-
-                <!-- Bar Chart -->
-                <div class="bg-[#111C44] p-6 rounded-xl">
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-white font-medium">Monthly Revenue</h3>
-                        <button class="text-purple-500">Details</button>
-                    </div>
-                    <canvas id="barChart"></canvas>
                 </div>
             </div>
 
-            <!-- Table Section -->
-            <div class="bg-[#111C44] rounded-xl p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-white font-medium">Orders Status</h3>
-                    <div class="flex space-x-4">
-                        <input type="text" placeholder="Search..." class="bg-[#1B254B] text-white px-4 py-2 rounded-lg text-sm">
-                        <button class="bg-purple-500 text-white px-4 py-2 rounded-lg text-sm">Add New</button>
+            <!-- Review Section -->
+            <div id="review" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Review</h2>
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <p class="text-gray-400">Gestion des évaluations des utilisateurs.</p>
+                    <!-- Placeholder for Review Data -->
+                    <div class="mt-4">
+                        <div class="text-white">Liste des évaluations...</div>
                     </div>
                 </div>
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-gray-400 text-left">
-                            <th class="pb-4">ORDER ID</th>
-                            <th class="pb-4">CUSTOMER</th>
-                            <th class="pb-4">DATE</th>
-                            <th class="pb-4">STATUS</th>
-                            <th class="pb-4">AMOUNT</th>
-                            <th class="pb-4"></th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-white">
-                        <tr class="border-t border-[#1B254B]">
-                            <td class="py-4">#8301</td>
-                            <td class="py-4">Sarah Peterson</td>
-                            <td class="py-4">Jan 25, 2024</td>
-                            <td class="py-4">
-                                <span class="px-3 py-1 bg-green-500/20 text-green-500 rounded-full text-xs">Completed</span>
-                            </td>
-                            <td class="py-4">$150.00</td>
-                            <td class="py-4 text-right">⋮</td>
-                        </tr>
-                        <tr class="border-t border-[#1B254B]">
-                            <td class="py-4">#8302</td>
-                            <td class="py-4">Mark Wilson</td>
-                            <td class="py-4">Jan 27, 2024</td>
-                            <td class="py-4">
-                                <span class="px-3 py-1 bg-yellow-500/20 text-yellow-500 rounded-full text-xs">Pending</span>
-                            </td>
-                            <td class="py-4">$245.00</td>
-                            <td class="py-4 text-right">⋮</td>
-                        </tr>
-                    </tbody>
-                </table>
+            </div>
+
+            <!-- Annonces Section -->
+            <div id="annonces" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Annonces</h2>
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <p class="text-gray-400">Gestion des annonces publiées par les conducteurs.</p>
+                    <!-- Placeholder for Annonces Data -->
+                    <div class="mt-4">
+                        <div class="text-white">Liste des annonces...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistiques Section -->
+            <div id="statistiques" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Statistiques</h2>
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <p class="text-gray-400">Analyse des données de la plateforme.</p>
+                    <!-- Placeholder for Charts -->
+                    <div class="mt-4">
+                        <canvas id="statisticsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Historique Section -->
+            <div id="historique" class="mb-8">
+                <h2 class="text-white text-2xl font-bold mb-4">Historique</h2>
+                <div class="bg-[#111C44] p-6 rounded-xl">
+                    <p class="text-gray-400">Historique des transactions et des trajets.</p>
+                    <!-- Placeholder for Historique Data -->
+                    <div class="mt-4">
+                        <div class="text-white">Liste des transactions...</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Initialize Circular Progress Chart
-        const circularCtx = document.getElementById('circularProgress').getContext('2d');
-        new Chart(circularCtx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [75, 25],
-                    backgroundColor: ['#8B5CF6', '#1B254B'],
-                    borderWidth: 0,
-                    cutout: '80%'
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-
-        // Initialize Bar Chart
-        const barCtx = document.getElementById('barChart').getContext('2d');
-        new Chart(barCtx, {
+        // Initialize Statistics Chart
+        const statisticsCtx = document.getElementById('statisticsChart').getContext('2d');
+        new Chart(statisticsCtx, {
             type: 'bar',
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                 datasets: [{
-                    label: 'Revenue',
+                    label: 'Transactions',
                     data: [65, 59, 80, 81, 56, 55],
                     backgroundColor: '#8B5CF6',
                     borderRadius: 4
