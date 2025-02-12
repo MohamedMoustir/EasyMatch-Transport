@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Statistiques Section -->
+<div id="statistiques" class="mb-8">
+    <h2 class="text-white text-2xl font-bold mb-4">Statistiques</h2>
+    <div class="bg-[#111C44] p-6 rounded-xl">
+        <p class="text-gray-400">Analyse des données de la plateforme.</p>
+        <!-- Chart -->
+        <div class="mt-4">
+            <canvas id="statisticsChart"></canvas>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // Fetch data from backend (example)
+    const fetchData = async () => {
+        const response = await fetch('/api/statistics');
+        const data = await response.json();
+        return data;
+    };
+
+    // Initialize Chart
+    const statisticsCtx = document.getElementById('statisticsChart').getContext('2d');
+    fetchData().then(data => {
+        new Chart(statisticsCtx, {
+            type: 'bar',
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: 'Transactions',
+                    data: data.values,
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            color: '#1B254B'
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#64748B'
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</html>
