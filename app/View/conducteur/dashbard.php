@@ -95,105 +95,139 @@
 
         <!-- Stepper avec effet néon -->
         <section class="bg-[#1a1f2e] min-h-screen p-8">
-    <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 mb-8 shadow-xl border border-white/10">
-        <h2 class="text-2xl font-bold text-white mb-6">Nouvel Itinéraire</h2>
-        
-        <!-- Progress Bar -->
-        <div class="flex justify-between items-center mb-8">
-            <div class="step-indicator flex items-center w-full">
-                <div class="step w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/50" data-step="1">1</div>
-                <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
-                <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center" data-step="2">2</div>
-                <div class="flex-1 h-1 mx-4 bg-white/10"></div>
-                <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center" data-step="3">3</div>
+            <div class="bg-white/5 backdrop-blur-xl rounded-2xl p-8 mb-8 shadow-xl border border-white/10">
+                <h2 class="text-2xl font-bold text-white mb-6">Nouvel Itinéraire</h2>
+
+                <!-- Progress Bar -->
+                <div class="flex justify-between items-center mb-8">
+                    <div class="step-indicator flex items-center w-full">
+                        <div class="step w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/50"
+                            data-step="1">1</div>
+                        <div class="flex-1 h-1 mx-4 bg-gradient-to-r from-purple-600 to-blue-600"></div>
+                        <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center"
+                            data-step="2">2</div>
+                        <div class="flex-1 h-1 mx-4 bg-white/10"></div>
+                        <div class="step w-12 h-12 bg-white/10 text-white rounded-xl flex items-center justify-center"
+                            data-step="3">3</div>
+                    </div>
+                </div>
+
+                <form action="/EasyMatch_Transports/public/ConducteurController/createVilleandEtap" id="addForm"
+                    method="POST" enctype="multipart/form-data" >
+                    <!-- Step 1 -->
+                    <div class="step-content" data-step="1">
+                        <h2 class="text-2xl font-bold text-white mb-4">Informations Générales</h2>
+
+                        <div class="relative">
+                            <!-- Ville de départ -->
+                            <select name="city" id="ville_depart"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
+                                <option value="" disabled selected>Choisissez une ville de départ</option>
+                            </select>
+
+                            <!-- Date de départ -->
+                            <input type="text" name="tilte" id="titre"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                                placeholder="titre">
+
+                            <!-- Date d'arrivée -->
+                            <input type="text" name="description" id="description"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                                placeholder="description">
+
+                            <!-- Types de colis acceptés -->
+                            <select name="type"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
+                                <option value="" disabled selected>Choisissez un type de colis</option>
+                                <option value="small">Petit</option>
+                                <option value="medium">Moyen</option>
+                                <option value="large">Grand</option>
+                            </select>
+
+                            <!-- Capacité du véhicule -->
+                            <select name="véhicule"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
+                                <option value="" disabled selected>Choisissez une capacité</option>
+                                <option value="small">Petit</option>
+                                <option value="medium">Moyen</option>
+                                <option value="large">Grand</option>
+                            </select>
+                        </div>
+
+                        <div class="mt-8 flex justify-end">
+                            <button type="button"
+                                class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-content hidden" data-step="2">
+                        <h2 class="text-2xl font-bold text-white mb-4">Villes Intermédiaires</h2>
+
+                        <div class="relative">
+                            <select name="destination" id="destination"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
+                                <option value="" disabled selected>Choisissez une ville intermédiaire</option>
+                            </select>
+                        </div>
+
+                        <input type="datetime-local" name="date_depart" id="date_depart"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                                placeholder="Date de départ">
+
+                        <input type="datetime-local" name="date_arrivee" id="date_arrivee"
+                            class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                            placeholder="Date d'arrivée">
+
+                        <!-- Ordre des étapes -->
+                        <input type="number" name="ordre" id="ordre"
+                            class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                            placeholder="Ordre de l'étape">
+
+                        <div class="mt-8 flex justify-between">
+                            <button type="button"
+                                class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
+                            <button type="button"
+                                class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-content hidden" data-step="3">
+                        <h2 class="text-2xl font-bold text-white mb-4">Destination Finale</h2>
+
+                        <!-- Ville d'arrivée -->
+                        <div class="relative">
+                            <select name="ville_arrivee" id="ville_arrivee"
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
+                                <option value="" disabled selected>Choisissez une ville d'arrivée</option>
+                            </select>
+                        </div>
+                        <div class="relative">
+                            <input type="file" name="avatar" id=""
+                                class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4"
+                                placeholder="Image">
+                           
+                        </div>
+
+                        <div class="mt-8 flex justify-between">
+                            <button type="button"
+                                class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
+                            <button type="submit" name="Terminer"
+                                class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Terminer</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </div>
-
-        <form action="/EasyMatch_Transports/public/ConducteurController/createVilleandEtap" id="addForm" method="POST">
-            <!-- Step 1 -->
-            <div class="step-content" data-step="1">
-                <h2 class="text-2xl font-bold text-white mb-4">Informations Générales</h2>
-
-                <div class="relative">
-                    <!-- Ville de départ -->
-                    <select name="city" id="ville_depart" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
-                        <option value="" disabled selected>Choisissez une ville de départ</option>
-                    </select>
-
-                    <!-- Date de départ -->
-                    <input type="datetime-local" name="date_depart" id="date_depart" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4" placeholder="Date de départ">
-
-                    <!-- Date d'arrivée -->
-                    <input type="datetime-local" name="date_arrivee" id="date_arrivee" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4" placeholder="Date d'arrivée">
-
-                    <!-- Types de colis acceptés -->
-                    <select name="type" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
-                        <option value="" disabled selected>Choisissez un type de colis</option>
-                        <option value="small">Petit</option>
-                        <option value="medium">Moyen</option>
-                        <option value="large">Grand</option>
-                    </select>
-
-                    <!-- Capacité du véhicule -->
-                    <select name="véhicule" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
-                        <option value="" disabled selected>Choisissez une capacité</option>
-                        <option value="small">Petit</option>
-                        <option value="medium">Moyen</option>
-                        <option value="large">Grand</option>
-                    </select>
-                </div>
-
-                <div class="mt-8 flex justify-end">
-                    <button type="button" class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
-                </div>
-            </div>
-
-            <!-- Step 2 -->
-            <div class="step-content hidden" data-step="2">
-                <h2 class="text-2xl font-bold text-white mb-4">Villes Intermédiaires</h2>
-
-                <div class="relative">
-                    <select name="destination" id="destination" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
-                        <option value="" disabled selected>Choisissez une ville intermédiaire</option>
-                    </select>
-                </div>
-
-                <!-- Ordre des étapes -->
-                <input type="number" name="ordre" id="ordre" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4" placeholder="Ordre de l'étape">
-                
-                <div class="mt-8 flex justify-between">
-                    <button type="button" class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
-                    <button type="button" class="next-btn px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Suivant</button>
-                </div>
-            </div>
-
-            <!-- Step 3 -->
-            <div class="step-content hidden" data-step="3">
-                <h2 class="text-2xl font-bold text-white mb-4">Destination Finale</h2>
-                
-                <!-- Ville d'arrivée -->
-                <div class="relative">
-                    <select name="ville_arrivee" id="ville_arrivee" class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
-                        <option value="" disabled selected>Choisissez une ville d'arrivée</option>
-                    </select>
-                </div>
-
-                <div class="mt-8 flex justify-between">
-                    <button type="button" class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
-                    <button type="submit" name="Terminer" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Terminer</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
+        </section>
 
 
 
 
 
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 
-<!-- <script>
+        <!-- <script>
    $(document).ready(function() {
  
     $('.next-btn').click(function() {
@@ -259,7 +293,7 @@
 });
 </script> -->
 
- 
+
 
 
         <section class="bg-slate-900 p-8">
@@ -389,43 +423,43 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", function () {
-    let currentStep = 1;
-    const totalSteps = 3;
+                    let currentStep = 1;
+                    const totalSteps = 3;
 
-    function updateStep(step) {
-        console.log("Changement vers l'étape :", step);
+                    function updateStep(step) {
+                        console.log("Changement vers l'étape :", step);
 
-        document.querySelectorAll('.step-content').forEach((content) => {
-            content.classList.toggle('hidden', content.dataset.step != step);
-        });
+                        document.querySelectorAll('.step-content').forEach((content) => {
+                            content.classList.toggle('hidden', content.dataset.step != step);
+                        });
 
-        document.querySelectorAll('.step').forEach((el) => {
-            el.classList.toggle('bg-purple-600', el.dataset.step == step);
-            el.classList.toggle('text-white', el.dataset.step == step);
-            el.classList.toggle('bg-white/10', el.dataset.step != step);
-        });
+                        document.querySelectorAll('.step').forEach((el) => {
+                            el.classList.toggle('bg-purple-600', el.dataset.step == step);
+                            el.classList.toggle('text-white', el.dataset.step == step);
+                            el.classList.toggle('bg-white/10', el.dataset.step != step);
+                        });
 
-        currentStep = step;
-    }
+                        currentStep = step;
+                    }
 
-    document.querySelectorAll('.next-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentStep < totalSteps) {
-                updateStep(currentStep + 1);
-            }
-        });
-    });
+                    document.querySelectorAll('.next-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            if (currentStep < totalSteps) {
+                                updateStep(currentStep + 1);
+                            }
+                        });
+                    });
 
-    document.querySelectorAll('.prev-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (currentStep > 1) {
-                updateStep(currentStep - 1);
-            }
-        });
-    });
+                    document.querySelectorAll('.prev-btn').forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            if (currentStep > 1) {
+                                updateStep(currentStep - 1);
+                            }
+                        });
+                    });
 
-    updateStep(currentStep);
-});
+                    updateStep(currentStep);
+                });
 
             </script>
             <script src="/EasyMatch_Transports/public/assets/js/main.js"></script>

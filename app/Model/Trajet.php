@@ -79,9 +79,7 @@ class Trajet {
                   VALUES (:ville_depart, :ville_arrivee, :date_depart, :date_arrivee, :id_conducteur)';
 
         $stmt = $this->pdo->prepare($query);
- echo "<pre>";
-        print_r($Trajet->getIdConducteur());
-        echo "</pre>";
+
 
     $stmt->execute([
             'ville_depart' => $Trajet->getVilleDepart(),
