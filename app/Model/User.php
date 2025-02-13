@@ -25,6 +25,24 @@ class User {
             return false;
         }
     }
+    public function login($email, $password){
+        try {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $sql = "SELECT * FROM users WHERE email = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$email]);
+            $user = $stmt->fetch();
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            } else {
+                return false;
+            }
+        } catch (PDOException $e) {
+            echo ("PDO Exception: " . $e->getMessage());
+            return false;
+        }
+    }
     
 }
 ?>

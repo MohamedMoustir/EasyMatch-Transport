@@ -27,6 +27,21 @@ class UserController {
             }
         }
     }
+    public function  login ($email, $password) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $email = ($_POST['email']);
+            $password = $_POST['password'];
+            $this->userModel = new User();
+            $user = $this->userModel->login($email, $password);
+            if ($user) {
+                $_SESSION['user'] = $user;
+                header('location:../../View/dashboard.php');
+            } else {
+                $_SESSION['error'] = "Email ou mot de passe incorrect";
+                header('location:../../View/auth/login.html');
+            }
+        }
+    }
 }
 $user = new UserController();
 $user->add();
