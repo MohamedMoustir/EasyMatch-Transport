@@ -1,5 +1,4 @@
 <?php
-<<<<<<< .merge_file_m5Yv51
 session_start();
 require_once '../../Core/Controller.php';
 require_once  '../Model/User.php';
@@ -47,8 +46,3 @@ class UserController {
 $user = new UserController();
 $user->add();
 ?>
-=======
-
-
-class 
->>>>>>> .merge_file_GCtona

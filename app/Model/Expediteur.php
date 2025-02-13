@@ -1,18 +1,18 @@
 <?php
-require_once './User.php';
- class Expediteur {
+// require_once './User.php';
+//  class Expediteur {
 
 
-    public function add
-
-
-
+//     public function add
 
 
 
 
 
- }
+
+
+
+//  }
 
 
 
