@@ -52,7 +52,7 @@ CREATE TABLE reviews(
     date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_conducteur INT NOT NULL,
     id_expediteur INT NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_user) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_expediteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

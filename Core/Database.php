@@ -5,6 +5,7 @@ class Database {
     private $conn;
 
     private function __construct() {
+
         $host = "localhost";
         $port = "5432";
         $dbname = "transport";
@@ -24,11 +25,11 @@ class Database {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
-        return self::$instance; 
-    }
-
-    public function getConnection() {
-        return $this->conn;
-    }
+        return self::$instance->conn; 
+       
+    } 
+    
+  
 }
+  
 ?>

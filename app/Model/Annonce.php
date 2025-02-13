@@ -220,6 +220,57 @@ WHERE
             echo "Errors: " . $e->getMessage();
         }
     }
+
+
+
+
+    public function paginationFiltredAnnonce($ville_depart, $ville_arv)
+    {
+        try {
+            $query = '
+                SELECT DISTINCT ON (a.id_annonce)
+                    a.id_annonce, 
+                    u.nom AS conducteur_nom,
+                    a.titre, 
+                    v_depart.nom AS ville_depart, 
+                    v_etape1.nom AS ville_etape1,
+                    v_etape2.nom AS ville_etape2,
+                    v_arrivee.nom AS ville_arrivee,
+                    etape1.ordre AS etape1_ordre,
+                    etape2.ordre AS etape2_ordre
+                FROM annonces a
+                JOIN conducteurs c ON a.id_conducteur = c.id_conducteur
+                JOIN users u ON c.id_conducteur = u.id_user
+                JOIN trajets t ON c.id_conducteur = t.id_conducteur
+                JOIN villes v_depart ON t.ville_depart = v_depart.id_ville
+                JOIN villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
+                LEFT JOIN etapes etape1 ON t.id_trajet = etape1.id_trajet AND etape1.ordre = 1  
+                LEFT JOIN etapes etape2 ON t.id_trajet = etape2.id_trajet AND etape2.ordre = 2 
+                LEFT JOIN villes v_etape1 ON etape1.ville_etape = v_etape1.id_ville
+                LEFT JOIN villes v_etape2 ON etape2.ville_etape = v_etape2.id_ville
+                WHERE (
+                    (v_depart.nom = :ville_depart AND v_etape1.nom = :ville_arv OR v_etape2.nom = :ville_arv) 
+                    OR (v_depart.nom = :ville_depart AND v_etape2.nom = :ville_arv OR v_arrivee.nom = :ville_arv)  
+                    OR (v_etape1.nom = :ville_depart AND v_etape2.nom = :ville_arv OR v_arrivee.nom = :ville_arv)
+                )
+                ORDER BY a.id_annonce, etape1.ordre, etape2.ordre';
+    
+            $stmt = $this->pdo->prepare($query);
+    
+            $stmt->bindParam(":ville_depart", $ville_depart, PDO::PARAM_STR);
+            $stmt->bindParam(":ville_arv", $ville_arv, PDO::PARAM_STR);
+    
+            $stmt->execute();
+            
+            $results = $stmt->fetchAll(PDO::FETCH_OBJ);
+            
+            return $results;
+    
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+    
 }
 
 

@@ -1,3 +1,3 @@
 <?php
 
-define("BASE_URL", "http://localhost/EasyMatch_Transports/public/");
+define("BASE_URL", "http://localhost/EasyMatch-Transport/public/");
