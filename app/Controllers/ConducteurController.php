@@ -15,11 +15,10 @@ class ConducteurController
 
     public function createVilleandEtap()
     {
-        // header('Content-Type: application/json');
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["city"]) {
             session_start();
-           
-        
+
+
             $ville_depart = isset($_POST["city"]) ? $_POST["city"] : null;
             $tilte = isset($_POST["tilte"]) ? $_POST["tilte"] : null;
             $description = isset($_POST["description"]) ? $_POST["description"] : null;
@@ -46,30 +45,46 @@ class ConducteurController
             $ville_arrivee_nom = $partss[2];
             $id_partss = $partss[3];
 
-            $etape = explode(",", $ville_etape);
-            $ville_etape_lat = $etape[0];
-            $ville_etape_lon = $etape[1];
-            $ville_etape_nom = $etape[2];
-            $id_etape = $etape[3];
-
-
             $Trajet = new Trajet('', $id_parts, $id_partss, $date_depart, $date_arrivee, $conducteur_id);
-
 
             $lastInsertId = $Trajet->CreateTrajet($Trajet);
 
 
-            $Etape = new Etape('', $lastInsertId, $id_etape, $ordre);
-            $Etape->CreateEtape($Etape);
+            $etapes = explode(";", $ville_etape);
 
+            foreach ($etapes as $etape) {
+                $etapeDetails = explode(",", $etape);
+
+                if (count($etapeDetails) >= 4) {
+
+                    $ville_etape_lat = $etapeDetails[0];
+                    $ville_etape_lon = $etapeDetails[1];
+                    $ville_etape_nom = $etapeDetails[2];
+                    $id_etape = $etapeDetails[3];
+
+                    $Etape = new Etape('', $lastInsertId, $id_etape, $ordre);
+                    $Etape->CreateEtape($Etape);
+
+
+                    $etapeVille = new Ville($id_etape, $ville_etape_nom, '', $ville_etape_lat, $ville_etape_lon);
+                    $etapeVille->CreateVille($etapeVille);
+
+                }
+            }
+
+            // $ville_etap = new Ville($id_etape, $ville_etape_nom, '', $ville_etape_lat, $ville_etape_lon);
             $depart = new Ville($id_parts, $ville_depart_nom, '', $ville_depart_lat, $ville_depart_lon);
             $arrivee = new Ville($id_partss, $ville_arrivee_nom, '', $ville_arrivee_lat, $ville_arrivee_lon);
-            $etape = new Ville($id_etape, $ville_etape_nom, '', $ville_etape_lat, $ville_etape_lon);
-
-
             $depart->CreateVille($depart);
             $arrivee->CreateVille($arrivee);
-            $etape->CreateVille($etape);
+            // $ville_etap->CreateVille($ville_etap);
+            // $Etape = new Etape('', $lastInsertId, $id_etape, $ordre);
+            // $Etape->CreateEtape($Etape);
+
+
+
+
+
 
 
             $Annonce = new Annonce($tilte, $description, $avatar, '', $conducteur_id);
@@ -99,26 +114,43 @@ class ConducteurController
             }
 
 
-            $Annonce->CreateAnnonce($Annonce);
+            $ee = $Annonce->CreateAnnonce($Annonce);
 
-        
+            // echo '<pre>';
+            // var_dump($etape);
+            // echo '</pre>';
 
             require "../app/View/conducteur/dashbard.php";
 
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
+            // header("Location: " . $_SERVER['PHP_SELF']);
+
         }
+        exit();
     }
-   
-    
+
     public function stepper()
-{
-    $afficheAnnonce = new Annonce('','','','','');
-    $gridAnnonce = $afficheAnnonce->paginationAnnonce();
+    {
+        header('Content-Type: application/json');
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-    // header('Content-Type: application/json');
-    echo json_encode(['success' => true, 'data' => $gridAnnonce]);
+        $afficheAnnonce = new Annonce('', '', '', '', '');
+        $gridAnnonce = $afficheAnnonce->paginationAnnonce();
 
+        if (!is_array($gridAnnonce)) {
+            echo json_encode(['success' => false, 'message' => 'Invalid data format from paginationAnnonce']);
+            exit;
+        }
+
+        echo json_encode(['success' => true, 'data' => $gridAnnonce]);
+        exit;
+    }
+
+    public function index()
+    {
+        require '../app/View/conducteur/steppper.php';
+    }
+
+    
 }
 
-}

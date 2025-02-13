@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -31,16 +27,7 @@
 
 <body class="bg-slate-900">
 
-    <!-- Sidebar avec effet gradient animé -->
-    <!DOCTYPE html>
-    <html lang="fr">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sidebar Blanc</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
 
     <body class="bg-gray-100 flex">
 
@@ -62,17 +49,14 @@
                     <span class="text-lg">📦</span>
                     <span class="font-medium">Mes Colis</span>
                 </a>
-                <a href="#"
+                <a href="/EasyMatch_Transports/public/ConducteurController/index"
                     class="px-6 py-4 flex items-center space-x-4 text-gray-800 hover:bg-gray-200 transition-all duration-300 border-l-4 border-transparent hover:border-blue-500">
                     <span class="text-lg">⭐</span>
-                    <span class="font-medium">Évaluations</span>
+                    <span class="font-medium">Stepper</span>
                 </a>
             </nav>
         </div>
 
-    </body>
-
-    </html>
 
 
 
@@ -213,7 +197,7 @@
                         <div class="mt-8 flex justify-between">
                             <button type="button"
                                 class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
-                            <button type="submit" name="Terminer"
+                            <button type="submit" name="submi"
                                 class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Terminer</button>
                         </div>
                     </div>
@@ -221,12 +205,19 @@
             </div>
         </section>
 
+        <?php
+
+?>
+
+<!-- <form method="post">
+    <button type="submit" name="submit">Envoyer</button>
+</form> -->
 
        
 
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-        <!-- <script>
+<!-- 
+    <script>
    $(document).ready(function() {
  
     $('.next-btn').click(function() {
@@ -290,7 +281,7 @@
         });
     });
 });
-</script> -->
+</script>  -->
 
 
 

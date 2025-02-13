@@ -5,7 +5,6 @@ class Etape
 {
     private $conn;
     private $table = "etapes";
-
     private $id_etape;
     private $id_trajet;
     private $ville_etape;

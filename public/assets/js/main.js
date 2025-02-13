@@ -2,7 +2,6 @@
 
 
 
-// Add JavaScript for the stepper functionality and fetch cities dynamically
 async function fetchCities() {
     try {
         const response = await fetch("https://mohamedmoustir.github.io/api/");

@@ -5,13 +5,15 @@ class Database {
     private $conn;
 
     private function __construct() {
+
         $host = "localhost";
         $port = "5432";
-        $dbname = "Transport";
+        $dbname = "transpotrt";
         $user = "postgres";
-        $pass = "abc";
-
-        try {
+        $pass = "laragon";
+ 
+        try { 
+            
             $this->conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
@@ -23,11 +25,10 @@ class Database {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
-        return self::$instance; 
-    }
-
-    public function getConnection() {
-        return $this->conn;
-    }
+        return self::$instance->conn; 
+       
+    } 
+  
 }
+  
 ?>

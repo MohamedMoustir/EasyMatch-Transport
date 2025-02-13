@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../../Core/Database.php';
+require_once __DIR__ . '/../Model/alert.php';
+
 
 class Trajet {
     private $id;
@@ -81,7 +83,7 @@ class Trajet {
         $stmt = $this->pdo->prepare($query);
 
 
-    $stmt->execute([
+    $exit=$stmt->execute([
             'ville_depart' => $Trajet->getVilleDepart(),
             'ville_arrivee' => $Trajet->getVilleArrivee(),
             'date_depart' => $Trajet->getDateDepart(),
@@ -89,13 +91,12 @@ class Trajet {
             'id_conducteur' => $Trajet->getIdConducteur()
         ]);
 
-        
-       
+//   Alert::alerts($exit);
+  $lastInsertId = $this->pdo->query("SELECT MAX(id_trajet) FROM trajets")->fetchColumn();
 
-           
-            return $this->pdo->lastInsertId();
+            return $lastInsertId;
             
-        
+          
 
     } catch (PDOException $e) {
         error_log("Error creating trajet: " . $e->getMessage());

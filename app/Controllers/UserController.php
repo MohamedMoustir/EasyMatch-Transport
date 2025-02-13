@@ -16,7 +16,7 @@ class UserController {
             $password = $_POST['password']; 
             $role = $_POST['role'];
             $this->userModel = new User();
-            header('location:../../View/auth/login.html');
+            header('location:../../View/auth/login.php');
     
             
             if ($this->userModel->register($nom, $prenom, $phone, $email, $password, $role)) {
@@ -38,7 +38,7 @@ class UserController {
                 header('location:../../View/dashboard.php');
             } else {
                 $_SESSION['error'] = "Email ou mot de passe incorrect";
-                header('location:../../View/auth/login.html');
+                header('location:../../View/auth/login.php');
             }
         }
     }

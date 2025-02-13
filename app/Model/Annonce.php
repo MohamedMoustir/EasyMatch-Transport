@@ -103,7 +103,7 @@ class Annonce
                 ':couverture' => $Annonce->getCouverture(),
                 ':id_conducteur' => $Annonce->getIdConducteur()
             ]);
-
+           
             return true;
         } catch (Exception $e) {
             error_log("Erreur lors de la création de l'annonce: " . $e->getMessage());
@@ -126,7 +126,7 @@ class Annonce
                 JOIN trajets t ON c.id_conducteur = t.id_conducteur
                 JOIN villes v ON t.ville_depart = v.id_ville
                 JOIN villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
-                where s.status ='En attente'";
+                where s.status ='Validé'";
 
 
             $filterQuery = "";

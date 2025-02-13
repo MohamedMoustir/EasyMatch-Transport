@@ -62,6 +62,15 @@ CREATE TABLE marchandises(
     id_expediteur INT NOT NULL,
     FOREIGN KEY (id_expediteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
+CREATE TABLE commandes(
+    id_commande SERIAL PRIMARY KEY,
+    id_marchandise INT NOT NULL,
+    id_etape INT NOT NULL,
+    status enum_status DEFAULT 'En attente',
+    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE villes(
     id_ville SERIAL PRIMARY KEY,
@@ -90,15 +99,7 @@ CREATE TABLE etapes(
     FOREIGN KEY (ville_etape) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE commandes(
-    id_commande SERIAL PRIMARY KEY,
-    id_marchandise INT NOT NULL,
-    id_etape INT NOT NULL,
-    status enum_status DEFAULT 'En attente',
-    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape) ON DELETE CASCADE ON UPDATE CASCADE
-);
+
 
 CREATE TABLE notifications(
     id_notifictaion SERIAL PRIMARY KEY,

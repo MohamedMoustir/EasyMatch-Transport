@@ -6,7 +6,7 @@ class User {
 
     public function __construct() {
         $database = Database::getInstance();
-        $this->pdo = $database->getConnection();
+        // $this->pdo = $database->getConnection();
     }
 
     public function register($nom, $prenom, $phone, $email, $password, $role) {

@@ -2,37 +2,76 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Geolocation with Routing</title>
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
-	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<link rel="icon" type="image/png" href="/EasyMatch_Transports/public/assets/images/favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation with Routing</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/EasyMatch_Transports/public/assets/images/favicon.png">
 
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			font-family: Arial, sans-serif;
-		}
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		#map {
-			width: 100%;
-			height: 100vh;
-		}
-	</style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Barre supérieure */
+        .top-bar {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* Carte */
+        #map {
+            width: 95%;
+            height: 90vh;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 
 <body>
-	<div id="items"></div>
-	<div id="map"></div>
 
-	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
-	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!-- Barre de titre -->
+    <div class="top-bar">🗺️ Suivi en temps réel</div>
 
-	<script src="/EasyMatch_Transports/public/assets/js/main.js"></script>
+    <!-- Carte -->
+    <div id="map"></div>
 
+    <!-- Leaflet Scripts -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <!-- Main Script -->
+    <script src="/EasyMatch_Transports/public/assets/js/main.js"></script>
+
+</body>
+</html>
 
 	<script>
 
@@ -49,6 +88,7 @@
 					} else {
 						response.data.forEach(item => {
 							initMap(item);
+							console.log(item);
 						});
 					}
 					$('#items').html(html);
