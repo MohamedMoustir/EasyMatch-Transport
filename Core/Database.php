@@ -5,9 +5,9 @@ class Database {
     private $conn;
 
     private function __construct() {
-
         $host = "localhost";
         $port = "5432";
+        $dbname = "Transport";
         $dbname = "Transport";
         $user = "postgres";
         $pass = "2001";
@@ -25,10 +25,11 @@ class Database {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
-        return self::$instance->conn; 
-       
-    } 
-  
+        return self::$instance; 
+    }
+
+    public function getConnection() {
+        return $this->conn;
+    }
 }
-  
 ?>
