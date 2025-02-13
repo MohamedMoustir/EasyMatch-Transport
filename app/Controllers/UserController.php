@@ -41,10 +41,10 @@ class UserController {
                 $_SESSION['user'] = $user;
                 switch($user['role']) {
                     case 'Expediteur':
-                        header('location:../../../index.html');
+                        header('location:../HomeController.php');
                         break;
                     case 'Conducteur':
-                        header('location:../../../index.html');
+                        header('location:../../View/conducteur/dashbard.html');
                         break;
                 }
             } else {
