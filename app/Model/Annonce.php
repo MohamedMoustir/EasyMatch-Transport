@@ -165,7 +165,7 @@ class Annonce
                 $starts = $page * $rows_pre_page;
             }
 
-            $query = " SELECT 
+            $query = " SELECT DISTINCT
             a.id_annonce,
     u.nom, 
     ville_depart.nom AS ville_depart_nom, 
