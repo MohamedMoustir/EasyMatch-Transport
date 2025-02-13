@@ -1,7 +1,7 @@
 <?php
 class Router {
 
-    private $controller = 'Home'; 
+    private $controller = 'HomeController'; 
     private $method = 'index';    
 
     public function splitURL() {

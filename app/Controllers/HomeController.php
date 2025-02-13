@@ -3,6 +3,12 @@ class HomeController
 {
     public function index()
     {
-        echo "g,b,gf,;gfg,;;ggf,fg;f,dfd";
+        $afficheAnnonce = new Annonce( '','','','','');
+        $gridAnnonce = $afficheAnnonce->paginationAnnonce();
+
+        $pages = $afficheAnnonce->getPages();
+
+        require_once  __DIR__ . '/../../public/assets/index.php';
+
     }
 }

@@ -9,7 +9,7 @@ class Trajet {
     private $date_depart;
     private $date_arrivee;
     private $id_conducteur;
-    private $pdo;
+    protected $pdo;
 
    
     

@@ -15,12 +15,11 @@ class ConducteurController
 
     public function createVilleandEtap()
     {
-
-
-
         // header('Content-Type: application/json');
         if ($_SERVER["REQUEST_METHOD"] == "POST" && $_POST["city"]) {
             session_start();
+           
+        
             $ville_depart = isset($_POST["city"]) ? $_POST["city"] : null;
             $tilte = isset($_POST["tilte"]) ? $_POST["tilte"] : null;
             $description = isset($_POST["description"]) ? $_POST["description"] : null;
@@ -76,7 +75,7 @@ class ConducteurController
             $Annonce = new Annonce($tilte, $description, $avatar, '', $conducteur_id);
 
             if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
-                
+
                 $permited = ['jpg', 'png', 'jpeg', 'gif'];
                 $file_name = $_FILES['avatar']['name'];
                 $file_temp = $_FILES['avatar']['tmp_name'];
@@ -102,6 +101,7 @@ class ConducteurController
 
             $Annonce->CreateAnnonce($Annonce);
 
+        
 
             require "../app/View/conducteur/dashbard.php";
 
@@ -109,8 +109,16 @@ class ConducteurController
             exit();
         }
     }
-    public function add()
-    {
-        echo "Ajout d'un conducteur";
-    }
+   
+    
+    public function stepper()
+{
+    $afficheAnnonce = new Annonce('','','','','');
+    $gridAnnonce = $afficheAnnonce->paginationAnnonce();
+
+    header('Content-Type: application/json');
+    echo json_encode(['success' => true, 'data' => $gridAnnonce]);
+
+}
+
 }
