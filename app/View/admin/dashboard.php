@@ -18,10 +18,12 @@
             <h2 class="text-xl font-bold mb-4">EasyMatch Admin</h2>
             <nav>
                 <ul class="space-y-2">
-                    <li><a href="#" class="block p-2 hover:bg-gray-200 rounded">📊 Tableau de Bord</a></li>
-                    <li><a href="#" class="block p-2 hover:bg-gray-200 rounded">👥 Utilisateurs</a></li>
-                    <li><a href="#" class="block p-2 hover:bg-gray-200 rounded">🚚 Annonces</a></li>
-                    <li><a href="#" class="block p-2 hover:bg-gray-200 rounded">📈 Statistiques</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-orange-200 rounded">📊 Tableau de Bord</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-red-200 rounded">👥 Utilisateurs</a></li>
+                 <li><a href="annonces.php" class="block p-2 hover:bg-blue-200 rounded">🚚 Annonces</a></li>
+                 <a href="ajouter_annonce.php" class="block p-2 hover:bg-yellow-200 text-black p-2 rounded">➕ Ajouter une annonce</a>
+                    <li><a href="#" class="block p-2 hover:bg-green-200 rounded">📈 Statistiques</a></li>
+                    
                 </ul>
             </nav>
         </aside>
@@ -39,6 +41,7 @@
                 <div class="bg-white p-4 rounded shadow">
                     <h3 class="text-lg font-bold">Annonces en Attente</h3>
                     <p class="text-2xl font-semibold text-yellow-500">15</p>
+
                 </div>
                 <div class="bg-white p-4 rounded shadow">
                     <h3 class="text-lg font-bold">Transactions Réussies</h3>
