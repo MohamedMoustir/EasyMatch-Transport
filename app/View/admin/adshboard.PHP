@@ -7,6 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<canvas id="statsChart"></canvas>
 </head>
 <body class="bg-gray-100">
     
@@ -102,6 +104,23 @@ fetch("dashboardController.php?action=getStats")
             }
         });
     });
+
+    fetch("../controllers/DashboardController.php?action=getStats")
+    .then(response => response.json())
+    .then(data => {
+        const ctx = document.getElementById("statsChart").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Annonces", "Transactions", "Utilisateurs"],
+                datasets: [{
+                    label: "Nombre total",
+                    data: [data.annonces, data.transactions, data.users],
+                    backgroundColor: ["blue", "green", "red"]
+                }]
+            }
+        });
+    })
 
 
     </script>
