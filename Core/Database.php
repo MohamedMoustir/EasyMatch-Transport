@@ -8,9 +8,9 @@ class Database {
 
         $host = "localhost";
         $port = "5432";
-        $dbname = "cabinet";
+        $dbname = "transport";
         $user = "postgres";
-        $pass = "laragon";
+        $pass = "1234";
  
         try { 
             
