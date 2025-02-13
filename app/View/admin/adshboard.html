@@ -84,6 +84,26 @@
                 }]
             }
         });
+
+       
+fetch("dashboardController.php?action=getStats")
+    .then(response => response.json())
+    .then(data => {
+        const ctx = document.getElementById("statsChart").getContext("2d");
+        new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: ["Annonces", "Transactions", "Utilisateurs"],
+                datasets: [{
+                    label: "Nombre total",
+                    data: [data.annonces, data.transactions, data.users],
+                    backgroundColor: ["blue", "green", "red"]
+                }]
+            }
+        });
+    });
+
+
     </script>
 
 </body>
