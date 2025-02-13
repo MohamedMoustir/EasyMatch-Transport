@@ -18,14 +18,10 @@ class User {
 
             $params = [$nom, $prenom, $phone, $email, $hashedPassword, $role];
 
-            if ($stmt->execute($params)) {
-                error_log("Inscription réussie pour ");
-            } else {
-                error_log("Échec d'insertion: " . json_encode($stmt->errorInfo()));
-            }
+            return $stmt->execute($params);
 
         } catch (PDOException $e) {
-            error_log("PDO Exception: " . $e->getMessage());
+            echo ("PDO Exception: " . $e->getMessage());
             return false;
         }
     }

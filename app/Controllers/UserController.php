@@ -16,16 +16,13 @@ class UserController {
             $password = $_POST['password']; 
             $role = $_POST['role'];
             $this->userModel = new User();
-            
-            error_log("Données reçues: " . json_encode($_POST));
+            header('location:../../View/auth/login.html');
     
             
             if ($this->userModel->register($nom, $prenom, $phone, $email, $password, $role)) {
                 $_SESSION['success'] = "Inscription réussie !";
-                error_log("Inscription réussie ");
             } else {
                 $_SESSION['error'] = "Une erreur s'est produite lors de l'inscription";
-                error_log("Échec de l'inscription pour $email");
 
             }
         }
