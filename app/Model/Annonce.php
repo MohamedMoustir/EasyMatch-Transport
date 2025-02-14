@@ -174,8 +174,7 @@ class Annonce
     t.date_arrivee,
 	etapes_ville.nom,
 	a.couverture,
-                        u.isVerified AS conducteur_status,
-
+    u.isVerified AS conducteur_status,
     ville_depart.lat as ville_departlat,
     ville_depart.lon as ville_departlon,
     v_arrivee.lat as v_arriveelat,
