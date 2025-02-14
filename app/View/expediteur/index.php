@@ -162,14 +162,21 @@
                 </h3>
                 <p class="text-gray-600">Départ: <?=date("d M Y", strtotime($annonce['date_depart']));?></p>
               </div>
-              <button
-                class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Vérifié
-              </button>
+              <?php if ($annonce['conducteur_status'] == 1): ?>
+    <button class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Vérifié
+    </button>
+<?php else: ?>
+    <button class="flex items-center bg-red-100 text-gray-800 text-sm px-3 py-1 rounded-full border border-red-300 hover:bg-red-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Non vérifié
+    </button>
+<?php endif; ?>
 
             </div>
             <div class="space-y-3">

@@ -174,6 +174,8 @@ class Annonce
     t.date_arrivee,
 	etapes_ville.nom,
 	a.couverture,
+                        u.isVerified AS conducteur_status,
+
     ville_depart.lat as ville_departlat,
     ville_depart.lon as ville_departlon,
     v_arrivee.lat as v_arriveelat,
@@ -234,6 +236,8 @@ WHERE
                 SELECT DISTINCT ON (a.id_annonce)
                     a.id_annonce, 
                     u.nom AS conducteur_nom,
+                    u.isVerified AS conducteur_status,
+
                     a.titre, 
                     v_depart.nom AS ville_depart, 
                     v_etape1.nom AS ville_etape1,

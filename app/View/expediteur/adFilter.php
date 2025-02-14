@@ -115,14 +115,23 @@
                                 <p class="text-gray-600">Départ: <?= htmlspecialchars($annonce->ville_depart) ?></p>
                                 <p class="text-gray-600">Arrivée: <?= htmlspecialchars($annonce->ville_arrivee) ?></p>
                             </div>
-                            <button
-                                class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                Vérifié
-                            </button>
+                            <?php if ($annonce->conducteur_status == 0): ?>
+    <button class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Vérifié
+    </button>
+<?php else: ?>
+    <button class="flex items-center bg-red-100 text-gray-800 text-sm px-3 py-1 rounded-full border border-red-300 hover:bg-red-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Non vérifié
+    </button>
+<?php endif; ?>
+
+
                         </div>
                         <div class="space-y-3">
                             <div class="flex items-center text-gray-700">
@@ -131,7 +140,7 @@
                                         d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                                 </svg>
                                 <span>Max : <?= htmlspecialchars($annonce->coffre) ?> KG </span>
-                                </div>
+                            </div>
                             <div class="flex items-center text-gray-700">
                                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
