@@ -22,8 +22,8 @@ class Router {
             require_once  "../app/Controllers/_404.php";
             $this->controller = "_404";
         }
-
         $controller = new $this->controller;
+        print_r($controller) ;
 
         if (!empty($URL[1]) && method_exists($controller, $URL[1])) {
             $this->method = $URL[1];

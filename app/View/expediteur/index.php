@@ -98,7 +98,7 @@
 <!-- Search Section -->
 <section class="py-8 bg-gray-100">
 <div class=" w-[70%] mx-auto px-4">
-  <form action='/EasyMatch-Transport/public/HomeController' method="POST">
+  <form action='/EasyMatch_Transport/public/HomeController' method="POST">
 
   <div class="bg-white rounded-lg shadow-lg p-6 -mt-16">
       <div class="grid md:grid-cols-3 gap-64">
