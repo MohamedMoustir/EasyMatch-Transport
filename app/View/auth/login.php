@@ -14,7 +14,7 @@
             <p class="text-gray-500">Connectez-vous pour continuer</p>
         </div>
 
-        <form class="space-y-6" method="post" action="../../Controllers/UserController.php/login">
+        <form class="space-y-6" method="post" action="/EasyMatch_Transports/public/UserController/login">
             <input type="hidden" name="action" value="login">
 
             <div>
