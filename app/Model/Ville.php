@@ -99,4 +99,12 @@ class Ville
             return false;
         }
     }
+    public function showAllCity(){
+        $query ='SELECT * FROM villes';
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute();
+        $results=$stmt->fetchAll(PDO::FETCH_OBJ);
+        return $results ;
+
+    }
 }

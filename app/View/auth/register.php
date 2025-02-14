@@ -11,7 +11,9 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Créer un compte</h1>
         
-        <form method="POST" action="../../Controllers/UserController.php/add" class="space-y-4">
+        <form method="POST" action="/EasyMatch_Transports/public/UserController/add" class="space-y-4">
+                <input type="hidden" name="action" value="add">
+
             <input type="text" name="nom" placeholder="Nom" required
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
             <input type="text" name="prenom" placeholder="Prénom" required

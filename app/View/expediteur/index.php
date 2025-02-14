@@ -12,7 +12,7 @@
   <!-- Navbar Section -->
 <nav class="px-14 py-3 flex items-center justify-between gap-5 shadow-md bg-white bg-opacity-90 shadow-lg fixed w-full z-50">
     <a href="/EasyMatch_Transports/public/HomeController/index" class="flex items-center gap-1">
-        <img class="w-20" src="C:\xampp\htdocs\EasyMatch_Transports\app\View\expediteur\logoo.png" alt="Logo de EasyMatch">
+        <img class="w-20" src="" alt="Logo de EasyMatch">
     </a>
     <div class="flex items-center justify-between gap-10">
         <ul class="flex items-center gap-5 text-md">
@@ -87,28 +87,44 @@
 
 <!-- Search Section -->
 <section class="py-8 bg-gray-100">
-  <div class="container mx-auto px-4">
-    <div class="bg-white rounded-lg shadow-lg p-6 -mt-16">
-      <div class="grid md:grid-cols-3 gap-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Départ</label>
-          <select
-            class="w-full rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 hover:ring-2 hover:ring-blue-300 transition">
-            <option>Toutes les villes</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">Arrivée</label>
-          <select
-            class="w-full rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 hover:ring-2 hover:ring-blue-300 transition">
-            <option>Toutes les villes</option>
-          </select>
-        </div>
-        <div class="flex items-end">
-          <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
-            Rechercher
-          </button>
-        </div>
+<div class=" w-[70%] mx-auto px-4">
+  <form action='/EasyMatch_Transport/public/HomeController' method="POST">
+
+  <div class="bg-white rounded-lg shadow-lg p-6 -mt-16">
+      <div class="grid md:grid-cols-3 gap-64">
+      <div>
+         
+         <label class="block text-sm font-medium text-gray-700 mb-2">Départ</label>
+           <select name="ville_depart"
+             class="w-64 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 hover:ring-2 hover:ring-blue-300 transition">
+             <option>Toutes les villes</option>
+ 
+             <?php  foreach($results AS $result) : ?>
+ 
+              <option value="<?= $result->nom ?>"><?= $result->nom ?></option>
+              <?php endforeach ;?>
+ 
+           </select>
+         </div>
+         <div>
+           <label class="block text-sm font-medium text-gray-700 mb-2">Arrivée</label>
+           <select name="ville_arv"
+             class="w-64 rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 hover:ring-2 hover:ring-blue-300 transition">
+             <option>Toutes les villes</option>
+             <?php  foreach($results AS $result) : ?>
+ 
+                 <option value="<?= $result->nom ?>"><?= $result->nom ?></option>
+             <?php endforeach ;?>
+           </select>
+         </div>
+        
+         <div class="flex items-end">
+           <button class="w-64 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">
+             Rechercher
+           </button>
+         </div>
+      </form>  
+      
       </div>
     </div>
   </div>
@@ -136,14 +152,21 @@
                 </h3>
                 <p class="text-gray-600">Départ: <?=date("d M Y", strtotime($annonce['date_depart']));?></p>
               </div>
-              <button
-                class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Vérifié
-              </button>
+              <?php if ($annonce['conducteur_status'] == 1): ?>
+    <button class="flex items-center bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full border border-green-300 hover:bg-green-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Vérifié
+    </button>
+<?php else: ?>
+    <button class="flex items-center bg-red-100 text-gray-800 text-sm px-3 py-1 rounded-full border border-red-300 hover:bg-red-200">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        Non vérifié
+    </button>
+<?php endif; ?>
 
             </div>
             <div class="space-y-3">
@@ -152,8 +175,8 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
                 </svg>
-                <span>Max: 25kg</span>
-              </div>
+                <span>Max : <?= $annonce['coffre'] ?> KG </span>
+                </div>
               <div class="flex items-center text-gray-700">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -163,7 +186,7 @@
               </div>
             </div>
             <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-              <a href="/EasyMatch_Transports/public/DetailsController/get/<?= $annonce['id_annonce'] ?>">Consulter Détails</a>
+              <a href="/EasyMatch_Transport/public/DetailsController/get/<?= $annonce['id_annonce'] ?>">Consulter Détails</a>
             </button>
           </div>
         </div>

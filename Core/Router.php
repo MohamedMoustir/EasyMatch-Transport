@@ -2,7 +2,7 @@
 class Router {
 
     private $controller = 'HomeController'; 
-    private $method = 'index';    
+    private $method = 'index';
 
     public function splitURL() {
         $URL = $_GET['url'] ?? ''; 

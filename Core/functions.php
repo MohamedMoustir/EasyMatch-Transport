@@ -13,8 +13,8 @@ function esc($str)
 }
 
 
-// function redirect($path)
-// {
-//     header("Location: " . ROOT."/".$path);
-//     die;
-// }
+function redirect($path)
+{
+    header("Location: " . BASE_URL."/".$path);
+    die;
+}
