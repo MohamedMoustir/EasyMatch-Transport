@@ -21,10 +21,10 @@ class UserController {
             
             if ($this->userModel->register($nom, $prenom, $phone, $email, $password, $role)) {
                 $_SESSION['success'] = "Inscription réussie !";
-                header('location:../../View/auth/login.html');
+                header('location:../../View/auth/login.php');
             } else {
                 $_SESSION['error'] = "Une erreur s'est produite lors de l'inscription";
-                header('location:../../View/auth/register.html');
+                header('location:../../View/auth/register.php');
             }
             exit();
         }
@@ -39,17 +39,24 @@ class UserController {
             
             if ($user) {
                 $_SESSION['user'] = $user;
+                $_SESSION['nom'] = $user['nom'];
+                $_SESSION['prenom'] = $user['prenom'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['phone'] = $user['phone'];
+                $_SESSION['role'] = $user['role'];
+                $_SESSION['date_creation'] = $user['date_creation']
+                $_SESSION['id'] = $user['id_user'];
                 switch($user['role']) {
                     case 'Expediteur':
                         header('location:../HomeController.php');
                         break;
                     case 'Conducteur':
-                        header('location:../../View/conducteur/dashbard.html');
+                        header('location:../../View/conducteur/dashbard.php');
                         break;
                 }
             } else {
                 $_SESSION['error'] = "Email ou mot de passe incorrect";
-                header('location:../../View/auth/login.html');
+                header('location:../../View/auth/login.php');
             }
             exit();
         }

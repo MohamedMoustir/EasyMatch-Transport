@@ -2,7 +2,7 @@ CREATE TYPE user_status AS ENUM ('Actif', 'Suspendu');
 CREATE TYPE user_role AS ENUM ('Admin','Expediteur','Conducteur');
 CREATE TYPE enum_status AS ENUM ('En attente', 'Validé', 'Refusé');
 CREATE TYPE vehicule_type AS ENUM ('Voiture', 'Camion');
-
+use Transport;
 
 CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
@@ -20,7 +20,7 @@ CREATE TABLE users (
 CREATE TABLE conducteurs(
     id_conducteur INT PRIMARY KEY NOT NULL,
     permis VARCHAR(15) NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES users(id_user)
+    FOREIGN KEY (id_conducteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE vehicules(
@@ -30,7 +30,7 @@ CREATE TABLE vehicules(
     type vehicule_type NOT NULL,
     coffre INT NOT NULL,
     id_conducteur INT NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur)
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE annonces(
@@ -41,7 +41,7 @@ CREATE TABLE annonces(
     status enum_status DEFAULT 'En attente',
     date_publication TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_conducteur INT NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur)
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE reviews(
@@ -52,15 +52,15 @@ CREATE TABLE reviews(
     date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_conducteur INT NOT NULL,
     id_expediteur INT NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur),
-    FOREIGN KEY (id_expediteur) REFERENCES users(id_user)
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_expediteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE marchandises(
     id_marchandise SERIAL PRIMARY KEY,
     dimension REAL NOT NULL,
     id_expediteur INT NOT NULL,
-    FOREIGN KEY (id_expediteur) REFERENCES users(id_user)
+    FOREIGN KEY (id_expediteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE villes(
@@ -76,9 +76,9 @@ CREATE TABLE trajets(
     date_depart TIMESTAMP NOT NULL,
     date_arrivee TIMESTAMP NOT NULL,
     id_conducteur INT NOT NULL,
-    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur),
-    FOREIGN KEY (ville_depart) REFERENCES villes(id_ville),
-    FOREIGN KEY (ville_arrivee) REFERENCES villes(id_ville)
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_depart) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_arrivee) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE etapes(
@@ -86,8 +86,8 @@ CREATE TABLE etapes(
     id_trajet INT NOT NULL,
     ville_etape INT NOT NULL,
     ordre INT NOT NULL,
-    FOREIGN KEY (id_trajet) REFERENCES trajets(id_trajet),
-    FOREIGN KEY (ville_etape) REFERENCES villes(id_ville)
+    FOREIGN KEY (id_trajet) REFERENCES trajets(id_trajet) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_etape) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE commandes(
@@ -96,8 +96,8 @@ CREATE TABLE commandes(
     id_etape INT NOT NULL,
     status enum_status DEFAULT 'En attente',
     date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise),
-    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape)
+    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE notifications(
@@ -106,6 +106,9 @@ CREATE TABLE notifications(
     contenu TEXT NOT NULL,
     date_envoi TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     id_recepteur INT NOT NULL,
-    FOREIGN KEY (id_recepteur) REFERENCES users(id_user)
+    FOREIGN KEY (id_recepteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+ALTER TABLE villes 
+ADD COLUMN lat DECIMAL(9,6) NOT NULL,
+ADD COLUMN lon DECIMAL(9,6) NOT NULL;
