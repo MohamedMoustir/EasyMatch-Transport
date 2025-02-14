@@ -22,7 +22,6 @@ class Email {
         $this->mail = new PHPMailer(true);
 
         try {
-            // Configuration SMTP
             $this->mail->isSMTP();
             $this->mail->Host = 'smtp.gmail.com';
             $this->mail->SMTPAuth = true;

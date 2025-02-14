@@ -13,7 +13,7 @@
     <!-- Navigation -->
     <nav class="px-14 py-3 flex items-center justify-between gap-5 shadow-md bg-white bg-opacity-90 shadow-lg fixed w-full z-50">
         <a href="/EasyMatch_Transports/public/HomeController/index" class="flex items-center gap-1">
-            <img class="w-20" src="logoo.png" alt="Logo de EasyMatch">
+            <img class="w-20" src="./logoo.png" alt="Logo de EasyMatch">
         </a>
         <div class="flex items-center justify-between gap-10">
             <ul class="flex items-center gap-5 text-md">
