@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/../../Core/Database.php';
+
 class Transaction {
     private ?int $id;
     private int $expediteur_id;

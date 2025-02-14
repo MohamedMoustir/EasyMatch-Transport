@@ -1,17 +1,16 @@
 <?php
-require_once  '../../Core/Database.php';
+require_once __DIR__ . '/../../Core/Database.php';
 
 class User {
     private $pdo;
 
     public function __construct() {
-        $database = Database::getInstance();
-        $this->pdo = $database->getConnection();
+        $this->pdo = Database::getInstance();
     }
 
     public function register($nom, $prenom, $phone, $email, $password, $role) {
         try {
-            $sql = "INSERT INTO users (nom, prenom, phone, email, password, role)VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO users (nom, prenom, phone, email, password, role) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $this->pdo->prepare($sql);
 
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -19,16 +18,14 @@ class User {
             $params = [$nom, $prenom, $phone, $email, $hashedPassword, $role];
 
             return $stmt->execute($params);
-
         } catch (PDOException $e) {
             echo ("PDO Exception: " . $e->getMessage());
             return false;
         }
     }
-    public function login($email, $password){
+
+    public function login($email, $password) {
         try {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
             $sql = "SELECT * FROM users WHERE email = ?";
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$email]);
@@ -43,31 +40,67 @@ class User {
             return false;
         }
     }
-    public function getAllUsers() {
-        $stmt = $this->pdo->prepare("SELECT * FROM users");
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    
-  
-    public function verifyUser($id) {
-        $stmt = $this->pdo->prepare("UPDATE users SET status = 'verified' WHERE id = ?");
-        return $stmt->execute([$id]);
-    }
-    
-    
-    public function suspendUser($id) {
-        $stmt = $this->pdo->prepare("UPDATE users SET status = 'suspended' WHERE id = ?");
-        return $stmt->execute([$id]);
-    }
-    
-   
-    public function deleteUser($id) {
-        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
-        return $stmt->execute([$id]);
-    }
-    
-    
-}
 
+    public function suspendUser($userId) {
+        try {
+            $sql = "UPDATE users SET status = 'Suspendu' WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur lors de la suspension de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
+    public function checkUser($userId) {
+        try {
+            $sql = "SELECT * FROM users WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($user) {
+                return "L'utilisateur avec l'ID $userId existe : " . print_r($user, true);
+            } else {
+                return "Aucun utilisateur trouvé avec l'ID $userId.";
+            }
+        } catch (PDOException $e) {
+            return "Erreur lors de la vérification de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
+    public function deleteUser($userId) {
+        try {
+            $sql = "DELETE FROM users WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur lors de la suppression de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
+    public function getAllUsers() {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM users");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo ("PDO Exception: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function verifyUser($id) {
+        try {
+            $sql = "UPDATE users SET status = 'verified' WHERE id_user = ?";
+            $stmt = $this->pdo->prepare($sql);
+            return $stmt->execute([$id]);
+        } catch (PDOException $e) {
+            return "Erreur lors de la vérification de l'utilisateur : " . $e->getMessage();
+        }
+    }
+}
 ?>
+    
+ 

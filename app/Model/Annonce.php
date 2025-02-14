@@ -237,5 +237,19 @@ WHERE
             echo "Errors: " . $e->getMessage();
         }
     }
+
+
+
+    public function deleteAnnonce($id_annonce){
+        try {
+            $query = "DELETE FROM annonces WHERE id_annonce = :id_annonce";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id_annonce', $id_annonce, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (Exception $e) {
+            error_log("Erreur lors de la suppression de l'annonce: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 

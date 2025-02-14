@@ -1,6 +1,7 @@
 <?php
 // require_once __DIR__.'./../../Core/Database.php';
 
+
 require_once __DIR__ . '/../../framework/Controller.php';
 
 class AnnonceController extends Controller {
@@ -15,8 +16,9 @@ class AnnonceController extends Controller {
 public function index(){
       $annonce = new Annonce('','','','','');
     $annonce = $annonce->paginationAnnonce();
-    require_once '../View/admin/annonces.php';
-  
+    
+    require_once 'C:\wamp64\www\EasyMatch_Transports\app\View\admin\annonces.php';
+
 }
 
 
@@ -31,6 +33,13 @@ public function getAllannocesAdmin(){
   $listAnnonces = $this->modelInstance->getListAnnoncesAdmin();
   $this->loadView('admin'.DS.'annonces',$listAnnonces);
 
+}
+
+public function delete($id){
+    $annonce = new Annonce('','','','','');
+    $annonce->deleteAnnonce($id);
+
+    header("Location: /EasyMatch_Transports/public/AnnonceController/getAllannocesAdmin");
 }
 
 
