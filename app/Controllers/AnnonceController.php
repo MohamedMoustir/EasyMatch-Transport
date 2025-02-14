@@ -31,6 +31,7 @@ public function getAllannoces(){
 public function getAllannocesAdmin(){
     
   $listAnnonces = $this->modelInstance->getListAnnoncesAdmin();
+  require_once __DIR__ . '/../View/include/aside.php';
   $this->loadView('admin'.DS.'annonces',$listAnnonces);
 
 }

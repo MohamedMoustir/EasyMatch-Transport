@@ -1,4 +1,3 @@
-<?php require_once VIEWS_PATH.DS.'include'.DS.'aside.php'; ?>
 <div class="p-6">
     <h1 class="text-3xl font-bold mb-6 text-center text-indigo-600">Liste des Annonces</h1>
     <?php if(count($data)>0){ ?>

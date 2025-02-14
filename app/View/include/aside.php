@@ -25,8 +25,8 @@
             <nav>
                 <ul class="space-y-2">
                     <li><a href="" class="block p-2 hover:bg-orange-200 rounded">📊 Tableau de Bord</a></li>
-                    <li><a href="<?= URLROOT.DS.'UserController' ?>"" class="block p-2 hover:bg-gray-200 rounded">👥 Gérer Utilisateurs</a></li>
-                    <li><a href="<?= URLROOT.DS.'AnnonceController'.DS.'getAllannocesAdmin' ?>"" class="block p-2 hover:bg-blue-200 rounded">🚚 Annonces</a></li>
+                    <li><a href="<?= '/EasyMatch_Transports/public/UserController' ?>"" class="block p-2 hover:bg-gray-200 rounded">👥 Gérer Utilisateurs</a></li>
+                    <li><a href="<?= '/EasyMatch_Transports/public/AnnonceController/getAllannocesAdmin' ?>"" class="block p-2 hover:bg-blue-200 rounded">🚚 Annonces</a></li>
                     <li><a href="#" class="block p-2 hover:bg-green-200 rounded">📈 Statistiques</a></li>
                 </ul>
             </nav>

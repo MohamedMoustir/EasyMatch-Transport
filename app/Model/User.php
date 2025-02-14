@@ -52,6 +52,28 @@ class User {
         }
     }
 
+    public function validateUser($userId) {
+        try {
+            $sql = "UPDATE users SET status = 'Validé' WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur lors de la validation de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
+    public function verifyUser($userId) {
+        try {
+            $sql = "UPDATE users SET isVerified = TRUE WHERE id_user = :id_user";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $e) {
+            return "Erreur lors de la vérification de l'utilisateur : " . $e->getMessage();
+        }
+    }
+
     public function checkUser($userId) {
         try {
             $sql = "SELECT * FROM users WHERE id_user = :id_user";
@@ -90,17 +112,5 @@ class User {
             return false;
         }
     }
-
-    public function verifyUser($id) {
-        try {
-            $sql = "UPDATE users SET status = 'verified' WHERE id_user = ?";
-            $stmt = $this->pdo->prepare($sql);
-            return $stmt->execute([$id]);
-        } catch (PDOException $e) {
-            return "Erreur lors de la vérification de l'utilisateur : " . $e->getMessage();
-        }
-    }
 }
 ?>
-    
- 
