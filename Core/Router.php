@@ -23,7 +23,7 @@ class Router {
             $this->controller = "_404";
         }
         $controller = new $this->controller;
-        print_r($controller) ;
+        // print_r($controller) ;
 
         if (!empty($URL[1]) && method_exists($controller, $URL[1])) {
             $this->method = $URL[1];

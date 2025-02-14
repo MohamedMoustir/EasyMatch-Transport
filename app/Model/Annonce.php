@@ -177,13 +177,16 @@ class Annonce
     ville_depart.lat as ville_departlat,
     ville_depart.lon as ville_departlon,
     v_arrivee.lat as v_arriveelat,
-    v_arrivee.lon as v_arriveelon
-
+    v_arrivee.lon as v_arriveelon,
+v.coffre
 
 FROM 
     public.annonces a
 JOIN 
     conducteurs c ON a.id_conducteur = c.id_conducteur
+JOIN 
+    vehicules  v ON v.id_conducteur = c.id_conducteur
+
 JOIN 
     users u ON c.id_conducteur = u.id_user
 JOIN 
@@ -237,9 +240,11 @@ WHERE
                     v_etape2.nom AS ville_etape2,
                     v_arrivee.nom AS ville_arrivee,
                     etape1.ordre AS etape1_ordre,
-                    etape2.ordre AS etape2_ordre
+                    etape2.ordre AS etape2_ordre,
+                    v.coffre
                 FROM annonces a
                 JOIN conducteurs c ON a.id_conducteur = c.id_conducteur
+                JOIN vehicules  v ON v.id_conducteur = c.id_conducteur
                 JOIN users u ON c.id_conducteur = u.id_user
                 JOIN trajets t ON c.id_conducteur = t.id_conducteur
                 JOIN villes v_depart ON t.ville_depart = v_depart.id_ville

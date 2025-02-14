@@ -13,7 +13,7 @@ class ReviewController{
           echo $comment;
           echo $rating ;
 
-        $review = new Review($rating,$comment,$status = 'En attente', $date_soumission = null , $id_cond ,$id_exp);
+        $review = new Review($rating,$comment, $status = 'En attente', $date_soumission = null , $id_cond ,$id_exp);
         $review->addReview();
         
         // header("Location: /EasyMatch-Transport/public/HomeController");
