@@ -31,7 +31,7 @@ class UserController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = ($_POST['email']);
             $password = $_POST['password'];
-            $this->userModel = new User();
+            $this->userModel = new User('','','','','','','','','','');
             $user = $this->userModel->login($email, $password);
             if ($user) {
                 $_SESSION['user'] = $user;
