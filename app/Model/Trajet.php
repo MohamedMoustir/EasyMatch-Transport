@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../../Core/Database.php';
+require_once __DIR__ . '/../Model/alert.php';
+
 
 class Trajet {
     private $id;
@@ -72,6 +74,11 @@ class Trajet {
     }
 
 
+    public function CreateTrajet(Trajet $Trajet)
+{
+    try {
+        $query = 'INSERT INTO public.trajets(ville_depart, ville_arrivee, date_depart, date_arrivee, id_conducteur)
+                  VALUES (:ville_depart, :ville_arrivee, :date_depart, :date_arrivee, :id_conducteur)';
     public function CreateTrajet($Trajet)
     {
         try {

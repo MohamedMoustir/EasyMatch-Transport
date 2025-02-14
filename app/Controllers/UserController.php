@@ -88,6 +88,8 @@ class UserController {
                         header('location: ../../View/auth/login.php');
                 }
             } else {
+                $_SESSION['error'] = "Email ou mot de passe incorrect";
+                header('location:../../View/auth/login.php');
                 $_SESSION['error'] = "Email ou mot de passe incorrect.";
                 header('location: ../../View/auth/login.php');
             }

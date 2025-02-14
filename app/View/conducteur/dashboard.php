@@ -1,13 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
 
- <!DOCTYPE html>
-    <html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Modern</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sidebar Blanc</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900">
+
+
 
     <body class="bg-gray-100 flex">
 
@@ -29,44 +49,14 @@
                     <span class="text-lg">📦</span>
                     <span class="font-medium">Mes Colis</span>
                 </a>
-                <a href="#"
+                <a href="/EasyMatch_Transports/public/ConducteurController/index"
                     class="px-6 py-4 flex items-center space-x-4 text-gray-800 hover:bg-gray-200 transition-all duration-300 border-l-4 border-transparent hover:border-blue-500">
                     <span class="text-lg">⭐</span>
-                    <span class="font-medium">Évaluations</span>
+                    <span class="font-medium">Stepper</span>
                 </a>
             </nav>
         </div>
 
-
-<div id="notif-list" class="hidden absolute right-20 top-10 mt-20 w-80 bg-slate-800 rounded-xl shadow-lg border border-white/10 z-10">
-    <div class="p-4 border-b border-white/10">
-        <h3 class="text-lg font-medium text-white">Notifications</h3>
-    </div>
-    <div class="max-h-96 overflow-y-auto">
-        <?php if (isset($notificat) && !empty($notificat)): ?>
-            <?php foreach ($notificat as $notification): ?>
-                <div class="p-4 border-b border-white/10 hover:bg-white/5">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-1 rtl:space-x-reverse">
-                            <p class="text-sm font-medium text-white">
-                                <?= htmlspecialchars($notification['titre']) ?>
-                            </p>
-                            <p class="text-sm text-gray-400">
-                                <?= htmlspecialchars($notification['contenu']) ?>
-                            </p>
-                            <p class="text-xs text-gray-500">
-                                <?= htmlspecialchars($notification['date_envoi']) ?>
-                            </p>
-                        </div>
-                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="text-sm text-gray-400 p-4"><?= isset($message) ? $message : 'Aucune notification disponible.' ?></p>
-        <?php endif; ?>
-    </div>
-</div>
 
 
 
@@ -164,7 +154,7 @@
                         <h2 class="text-2xl font-bold text-white mb-4">Villes Intermédiaires</h2>
 
                         <div class="relative">
-                            <select multiple name="destination" id="destination"
+                            <select multiple name="destination[]" id="destination"
                                 class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
                                 <option value="" disabled selected>Choisissez une ville intermédiaire</option>
                             </select>
@@ -212,7 +202,7 @@
                         <div class="mt-8 flex justify-between">
                             <button type="button"
                                 class="prev-btn px-6 py-3 bg-gray-700 text-white rounded-xl hover:bg-gray-600">Retour</button>
-                            <button type="submit" name="Terminer"
+                            <button type="submit" name="submi"
                                 class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl hover:opacity-90">Terminer</button>
                         </div>
                     </div>
@@ -220,12 +210,19 @@
             </div>
         </section>
 
+        <?php
+
+?>
+
+<!-- <form method="post">
+    <button type="submit" name="submit">Envoyer</button>
+</form> -->
 
        
 
         <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-        <!-- <script>
+<!-- 
+    <script>
    $(document).ready(function() {
  
     $('.next-btn').click(function() {
@@ -289,7 +286,7 @@
         });
     });
 });
-</script> -->
+</script>  -->
 
 
 

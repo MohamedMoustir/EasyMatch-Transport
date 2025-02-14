@@ -98,20 +98,21 @@ class Annonce
                           VALUES (:titre, :description, :couverture, :id_conducteur)";
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([
-                ':titre' => $Annonce->getTitre(),
-                ':description' => $Annonce->getDescription(),
-                ':couverture' => $Annonce->getCouverture(),
-                ':id_conducteur' => $Annonce->getIdConducteur()
+                'titre' => $Annonce->getTitre(),
+                'description' => $Annonce->getDescription(),
+                'couverture' => $Annonce->getCouverture(),
+                'id_conducteur' => $Annonce->getIdConducteur()
             ]);
-
+           
             return true;
         } catch (Exception $e) {
+     
             error_log("Erreur lors de la création de l'annonce: " . $e->getMessage());
             return false;
         }
     }
 
-    public function paginationAnnonce()
+    public function paginationAnnonce($driver_id=null)
     {
         try {
 
@@ -131,8 +132,8 @@ class Annonce
 
             $filterQuery = "";
 
-            if (isset($_GET['category']) && !empty($_GET['category'])) {
-                $filterQuery = " AND categorieNom = :category";
+            if (isset($driver_id) && !empty($driver_id)) {
+                $filterQuery = " AND c.id_conducteur = :id_conducteur";
             }
 
 
@@ -148,7 +149,7 @@ class Annonce
             $stmt = $this->pdo->prepare($recordQuery);
 
             if (!empty($filterQuery)) {
-                $stmt->bindParam(':category', $_GET['category'], PDO::PARAM_STR);
+                $stmt->bindParam(':id_conducteur', $_GET['driver_id'], PDO::PARAM_STR);
             }
 
 
@@ -210,7 +211,7 @@ WHERE
             $stmt->bindParam(':rows_pre_page', $rows_pre_page, PDO::PARAM_INT);
 
             if (!empty($filterQuery)) {
-                $stmt->bindParam(':category', $_GET['category'], PDO::PARAM_STR);
+                $stmt->bindValue(':id_conducteur', $driver_id);
             }
 
 

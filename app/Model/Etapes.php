@@ -5,20 +5,18 @@ class Etape
 {
     private $conn;
     private $table = "etapes";
-
     private $id_etape;
     private $id_trajet;
     private $ville_etape;
-    private $ordre;
     private $pdo;
 
 
-    public function __construct($id_etape, $id_trajet, $ville_etape, $ordre)
+    public function __construct($id_etape, $id_trajet, $ville_etape)
     {
         $this->id_etape = $id_etape;
         $this->id_trajet = $id_trajet;
         $this->ville_etape = $ville_etape;
-        $this->ordre = $ordre;
+
         $this->pdo = Database::getInstance();
 
     }
@@ -39,11 +37,6 @@ class Etape
         return $this->ville_etape;
     }
 
-    public function getOrdre()
-    {
-        return $this->ordre;
-    }
-
 
 
     public function setVilleEtape($ville_etape)
@@ -56,18 +49,17 @@ class Etape
         $this->ordre = $ordre;
     }
 
-    public function CreateEtape( $Etape)
+    public function CreateEtape(Etape $Etape)
     {
         try {
-            $query = 'INSERT INTO public.etapes( id_trajet, ville_etape, ordre)
-	       VALUES (:id_trajet, :ville_etape, :ordre);';
+            $query = 'INSERT INTO public.etapes( id_trajet, ville_etape)
+	       VALUES (:id_trajet, :ville_etape )';
 
             $stmt = $this->pdo->prepare($query);
 
           $stmt->execute([
                 'id_trajet'=>$Etape->getIdTrajet(),
-                'ville_etape' => $Etape->getVilleEtape(),
-                'ordre' => $Etape->getOrdre()
+                'ville_etape' => $Etape->getVilleEtape()
             ]);
             
             return true;

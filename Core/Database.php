@@ -4,8 +4,10 @@ class Database {
     private $pdo;
     private function __construct() {
 
+
         $host = "localhost";
         $port = "5432";
+        $dbname = "transport";
         $dbname = "transport";
         $user = "postgres";
         $pass = "1234";
@@ -30,5 +32,6 @@ class Database {
     } 
 
 }
+  
   
 ?>

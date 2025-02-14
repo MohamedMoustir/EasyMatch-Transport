@@ -116,3 +116,11 @@ CREATE TABLE notifications(
 ALTER TABLE villes 
 ADD COLUMN lat DECIMAL(9,6) NOT NULL,
 ADD COLUMN lon DECIMAL(9,6) NOT NULL;
+
+ALTER TABLE etapes DROP COLUMN ordre;
+ALTER TABLE etapes ADD ordre INT GENERATED ALWAYS AS IDENTITY;
+kifach nkhli order ytzad b 1 fkol mra inseret f database ex conducteur dkhal 3 etap haka etap 1 order 1 etap 2 order 2 walkin condecteur akher dkhal etape ykon hta how hakaetap 1 order 1 etap 2 order 2  
+ALTER TABLE public.annonces ADD CONSTRAINT unique_conducteur UNIQUE (id_conducteur);
+ALTER TABLE public.trajets ADD CONSTRAINT unique_trajets UNIQUE (id_conducteur);
+
+
