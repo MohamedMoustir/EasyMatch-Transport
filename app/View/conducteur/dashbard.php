@@ -149,7 +149,7 @@
                         <h2 class="text-2xl font-bold text-white mb-4">Villes Intermédiaires</h2>
 
                         <div class="relative">
-                            <select multiple name="destination" id="destination"
+                            <select multiple name="destination[]" id="destination"
                                 class="w-full p-4 bg-gray-800 border border-gray-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-600 mt-4">
                                 <option value="" disabled selected>Choisissez une ville intermédiaire</option>
                             </select>

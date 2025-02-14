@@ -1,6 +1,4 @@
 
-<?php echo '<pre>'; var_dump($allvile); echo '</pre>'; ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,6 +9,58 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <!-- Leaflet Scripts -->
+     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+    <!-- Main Script -->
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/EasyMatch_Transports/public/assets/images/favicon.png">
+
+    <!-- Custom Styles -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Barre supérieure */
+        .top-bar {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            z-index: 1000;
+        }
+
+        /* Carte */
+        #map {
+            width: 95%;
+            height: 90vh;
+            margin: 40px auto;
+            border-radius: 12px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
@@ -107,7 +157,7 @@
                             
                             <h3 class="text-xl font-bold mb-4">Nouvelle commande</h3>
                             
-                            <form action="" method="post" id="orderForm" class="space-y-4">
+                            <form action="/EasyMatch_Transports/public/CommandeController/createCommande" method="post" id="orderForm" class="space-y-4">
                                 <div>
                                     <label class="block text-sm font-medium mb-1">Dimensions du colis (cm³)</label>
                                     <input name="Dimensions" type="number" required 
@@ -119,7 +169,7 @@
                                    
                                     <select name="Ville_départ" required class="w-full px-3 py-2 border rounded-lg"> 
                                     <?php foreach ($allvile as $ville) { ?>
-        <option value="<?= htmlspecialchars($ville->lat_etape) ?>,<?= htmlspecialchars($ville->lon_etape ) ?>">
+        <option value="<?= htmlspecialchars($ville->id_ville) ?> ">
             <?= htmlspecialchars($ville->etape) ?>
         </option>
     <?php } ?>
@@ -131,7 +181,7 @@
                                     <label class="block text-sm font-medium mb-1">Ville d'arrivée</label>
                                     <select name="Ville_arrivee" required class="w-full px-3 py-2 border rounded-lg">
                                     <?php foreach ($allvile as $ville) { ?>
-        <option value="<?= htmlspecialchars($ville->lat_etape) ?>,<?= htmlspecialchars($ville->lon_etape ) ?>">
+        <option value="<?= htmlspecialchars($ville->id_ville) ?>">
             <?= htmlspecialchars($ville->etape) ?>
         </option>
     <?php } ?>
@@ -166,40 +216,150 @@
 
             <!-- Right Column - Map -->
             <div class="sticky top-24 h-[calc(100vh-8rem)]">
-                <div id="map" class="w-full h-full rounded-lg shadow-lg"></div>
-                <div class="mt-4 bg-white p-4 rounded-lg shadow">
-                    <p class="text-gray-600 text-sm">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        Le trajet réel peut varier en fonction des conditions de circulation
-                    </p>
-                </div>
-            </div>
+                 <div class="top-bar">🗺️ Suivi en temps réel</div>
+
+    <!-- Carte -->
+    <div id="map"></div>
         </div>
     </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+    <!-- Barre de titre -->
+   
+  
+   
+    <script src="/EasyMatch_Transports/public/assets/js/main.js"></script>
+
+
+
     <script>
-        // Initialize map
-        const map = L.map('map').setView([46.2276, 2.2137], 6);
-        
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap'
+
+
+
+$.ajax({
+			url: '/EasyMatch_Transports/public/DetailsController/steperDetiles',
+			method: 'GET',
+			dataType: 'json',
+			success: function (response) {
+				if (response && response.success && Array.isArray(response.data)) {
+					let html = '';
+					initMap(response.data[0]);
+					if (response.data.length === 0) {
+						html = `<p class="text-gray-500 text-center">Aucune annonce disponible.</p>`;
+					} else {
+						response.data.forEach(item => {
+							initMap(item);
+							console.log(item);
+						});
+					}
+					$('#items').html(html);
+				} else {
+					console.error("Erreur : Données invalides reçues du serveur.");
+				}
+			},
+			error: function (xhr, status, error) {
+				console.error("Erreur AJAX :", error);
+			}
+		});
+
+
+
+
+		$.ajax({
+			url: '/EasyMatch_Transports/public/conducteurController/stepper',
+			method: 'GET',
+			dataType: 'json',
+			success: function (response) {
+				if (response && response.success && Array.isArray(response.data)) {
+					let html = '';
+					initMap(response.data[0]);
+					if (response.data.length === 0) {
+						html = `<p class="text-gray-500 text-center">Aucune annonce disponible.</p>`;
+					} else {
+						response.data.forEach(item => {
+							initMap(item);
+							console.log(item);
+						});
+					}
+					$('#items').html(html);
+				} else {
+					console.error("Erreur : Données invalides reçues du serveur.");
+				}
+			},
+			error: function (xhr, status, error) {
+				console.error("Erreur AJAX :", error);
+			}
+		});
+
+
+
+
+		async function initMap(item) {
+    try {
+        console.log("Annonce reçue :", item);
+
+        let A = { lat: parseFloat(item.ville_departlat), lon: parseFloat(item.ville_departlon) };
+        let C = { lat: 34.0209, lon: -6.8416 }; 
+        let D = { lat: 30.4278, lon: -9.5982 }; 
+        let Z = { lat: parseFloat(item.v_arriveelat), lon: parseFloat(item.v_arriveelon) };
+
+        console.log("Coordonnées des villes :", { A, C, D, Z });
+
+        var map = L.map('map').setView([A.lat, A.lon], 6);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri, HERE, Garmin, FAO, NOAA',
+            maxZoom: 18
         }).addTo(map);
 
-        // Add route markers
-        const paris = L.marker([48.8566, 2.3522]).addTo(map)
-            .bindPopup('Paris - Point de départ');
-            
-        const lyon = L.marker([45.7640, 4.8357]).addTo(map)
-            .bindPopup('Lyon - Point d\'arrivée');
+		var taxiIcon = L.icon({
+    iconUrl: '/EasyMatch_Transports/public/public/assets/images/6fd8c90131.png', 
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
 
-        // Add route line
-        const route = L.polyline([
-            [48.8566, 2.3522],
-            [47.9013, 1.9041],  // Fontainebleau
-            [47.7986, 3.5732],  // Auxerre
-            [45.7640, 4.8357]
-        ], {color: 'blue'}).addTo(map);
+
+        let villes = [
+            { coords: A, nom: item.ville_depart_nom },
+            { coords: C, nom: "Point C" },
+            { coords: D, nom: "Point D" },
+            { coords: Z, nom: item.ville_arrivee_nom }
+        ];
+
+        villes.forEach(ville => {
+            let marker = L.marker([ville.coords.lat, ville.coords.lon], { icon: taxiIcon }).addTo(map);
+            marker.bindPopup(`<b>${ville.nom}</b>`);
+        });
+
+        L.Routing.control({
+            waypoints: [
+                L.latLng(A.lat, A.lon),
+                L.latLng(Z.lat, Z.lon)
+            ],
+            routeWhileDragging: true,
+            lineOptions: {
+                styles: [{ color: 'blue', weight: 5 }]
+            }
+        }).addTo(map);
+
+        L.Routing.control({
+            waypoints: [
+                L.latLng(C.lat, C.lon),
+                L.latLng(D.lat, D.lon)
+            ],
+            routeWhileDragging: true,
+            lineOptions: {
+                styles: [{ color: 'none', weight: 5 }]
+            }
+        }).addTo(map);
+
+    } catch (error) {
+        console.error("Erreur lors de l'initialisation de la carte :", error);
+    }
+    
+}
 
 
 
@@ -221,13 +381,7 @@
             if (e.target === orderModal) closeOrderModal();
         });
 
-        // Form submission
-        document.getElementById('orderForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Add your submission logic here
-            alert('Demande envoyée avec succès!');
-            closeOrderModal();
-        });
-    </script>
+</script>
 </body>
+
 </html>

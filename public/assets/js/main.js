@@ -81,36 +81,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// // paginaton
-// let currentStep = 1;
-// const steps = document.querySelectorAll('.step-content');
-// const nextBtns = document.querySelectorAll('.next-btn');
-// const prevBtns = document.querySelectorAll('.prev-btn');
-// const stepIndicators = document.querySelectorAll('.step');
+// paginaton
+let currentStep = 1;
+const steps = document.querySelectorAll('.step-content');
+const nextBtns = document.querySelectorAll('.next-btn');
+const prevBtns = document.querySelectorAll('.prev-btn');
+const stepIndicators = document.querySelectorAll('.step');
 
-// function showStep(step) {
-// 	steps.forEach(stepContent => stepContent.classList.add('hidden'));
-// 	stepIndicators.forEach(indicator => indicator.classList.remove('bg-purple-600', 'text-white'));
-// 	stepIndicators[step - 1].classList.add('bg-purple-600', 'text-white');
-// 	steps[step - 1].classList.remove('hidden');
-// }
+function showStep(step) {
+	steps.forEach(stepContent => stepContent.classList.add('hidden'));
+	stepIndicators.forEach(indicator => indicator.classList.remove('bg-purple-600', 'text-white'));
+	stepIndicators[step - 1].classList.add('bg-purple-600', 'text-white');
+	steps[step - 1].classList.remove('hidden');
+}
 
-// nextBtns.forEach(btn => {
-// 	btn.addEventListener('click', () => {
-// 		if (currentStep < steps.length) {
-// 			currentStep++;
-// 			showStep(currentStep);
-// 		}
-// 	});
-// });
+nextBtns.forEach(btn => {
+	btn.addEventListener('click', () => {
+		if (currentStep < steps.length) {
+			currentStep++;
+			showStep(currentStep);
+		}
+	});
+});
 
-// prevBtns.forEach(btn => {
-// 	btn.addEventListener('click', () => {
-// 		if (currentStep > 1) {
-// 			currentStep--;
-// 			showStep(currentStep);
-// 		}
-// 	});
-// });
+prevBtns.forEach(btn => {
+	btn.addEventListener('click', () => {
+		if (currentStep > 1) {
+			currentStep--;
+			showStep(currentStep);
+		}
+	});
+});
 
-// showStep(currentStep);
+showStep(currentStep);
+

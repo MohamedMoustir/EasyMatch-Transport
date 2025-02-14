@@ -12,6 +12,8 @@ class Marchandise
     {
         $this->dimension = $dimension;
         $this->id_expediteur = $id_expediteur;
+        $this->pdo = Database::getInstance();
+
     }
 
     // 🔹 Getters
@@ -45,8 +47,8 @@ class Marchandise
     {
         try {
 
-            $query = "INSERT INTO public.marchandises( dimension, id_expediteur)
-	          VALUES ( dimension, id_expediteur);";
+            $query = "INSERT INTO marchandises( dimension, id_expediteur)
+	          VALUES ( :dimension, :id_expediteur);";
 
             $stmt = $this->pdo->prepare($query);
             $stmt->execute([

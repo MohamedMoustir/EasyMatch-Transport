@@ -62,15 +62,6 @@ CREATE TABLE marchandises(
     id_expediteur INT NOT NULL,
     FOREIGN KEY (id_expediteur) REFERENCES users(id_user) ON DELETE CASCADE ON UPDATE CASCADE
 );
-CREATE TABLE commandes(
-    id_commande SERIAL PRIMARY KEY,
-    id_marchandise INT NOT NULL,
-    id_etape INT NOT NULL,
-    status enum_status DEFAULT 'En attente',
-    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape) ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 CREATE TABLE villes(
     id_ville SERIAL PRIMARY KEY,
@@ -99,7 +90,19 @@ CREATE TABLE etapes(
     FOREIGN KEY (ville_etape) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-
+CREATE TABLE commandes(
+    id_commande SERIAL PRIMARY KEY,
+    id_marchandise INT NOT NULL,
+    ville_depart_cmd INT NOT NULL,
+    ville_arrivee_cmd INT NOT NULL,
+    id_conducteur  INT NOT NULL,
+    status enum_status DEFAULT 'En attente',
+    date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_depart_cmd) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_arrivee_cmd) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 CREATE TABLE notifications(
     id_notifictaion SERIAL PRIMARY KEY,
@@ -113,3 +116,11 @@ CREATE TABLE notifications(
 ALTER TABLE villes 
 ADD COLUMN lat DECIMAL(9,6) NOT NULL,
 ADD COLUMN lon DECIMAL(9,6) NOT NULL;
+
+ALTER TABLE etapes DROP COLUMN ordre;
+ALTER TABLE etapes ADD ordre INT GENERATED ALWAYS AS IDENTITY;
+kifach nkhli order ytzad b 1 fkol mra inseret f database ex conducteur dkhal 3 etap haka etap 1 order 1 etap 2 order 2 walkin condecteur akher dkhal etape ykon hta how hakaetap 1 order 1 etap 2 order 2  
+ALTER TABLE public.annonces ADD CONSTRAINT unique_conducteur UNIQUE (id_conducteur);
+ALTER TABLE public.trajets ADD CONSTRAINT unique_trajets UNIQUE (id_conducteur);
+
+

@@ -74,7 +74,7 @@ class Trajet {
     }
 
 
-    public function CreateTrajet($Trajet)
+    public function CreateTrajet(Trajet $Trajet)
 {
     try {
         $query = 'INSERT INTO public.trajets(ville_depart, ville_arrivee, date_depart, date_arrivee, id_conducteur)
@@ -83,7 +83,7 @@ class Trajet {
         $stmt = $this->pdo->prepare($query);
 
 
-    $exit=$stmt->execute([
+    $stmt->execute([
             'ville_depart' => $Trajet->getVilleDepart(),
             'ville_arrivee' => $Trajet->getVilleArrivee(),
             'date_depart' => $Trajet->getDateDepart(),
@@ -91,10 +91,9 @@ class Trajet {
             'id_conducteur' => $Trajet->getIdConducteur()
         ]);
 
-//   Alert::alerts($exit);
-  $lastInsertId = $this->pdo->query("SELECT MAX(id_trajet) FROM trajets")->fetchColumn();
 
-            return $lastInsertId;
+
+            return $this->pdo->lastInsertId();
             
           
 
@@ -103,6 +102,8 @@ class Trajet {
         return false;
     }
 }
+
+
 
 }
 

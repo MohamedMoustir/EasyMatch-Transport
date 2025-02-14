@@ -15,7 +15,7 @@ class Notification
         $this->contenu = $contenu;
         $this->id_recepteur = $id_recepteur;
         $this->date_envoi = $date_envoi;
-        Database::getInstance();
+        $this->pdo=Database::getInstance();
     }
 
     // 🔹 Getters
@@ -59,7 +59,7 @@ class Notification
 
     }
 
-    public function Notification($Notifi)
+    public  function Notification($Notifi)
     {
         try {
 

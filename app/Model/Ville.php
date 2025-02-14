@@ -75,22 +75,23 @@ class Ville
         $this->lon = $lon;
     }
 
-    public function getAllville($id_ville)
+    public function getAllville($id_conducteur)
     {
         try {
 
             $qeury = 'SELECT u.id_conducteur ,vd.lat  as ville_depart_lat ,vd.lon as ville_depart_lon ,
-vr.lat  as ville_arrivee_lat ,vr.lon as ville_arrivee_lon,
-vd.nom as depart , vr.nom as arrivee, v.nom as etape ,v.lat as lat_etape , v.lon as lon_etape 
-from public.conducteurs u
-JOIN trajets s ON u.id_conducteur = s.id_conducteur
-Join villes vd on s.ville_depart = vd.id_ville
-Join villes vr on s.ville_arrivee = vr.id_ville
-join etapes e on e.id_trajet = s.id_trajet
-Join villes v on e.ville_etape = v.id_ville
-where u.id_conducteur= :id_ville';
+                vr.lat  as ville_arrivee_lat ,vr.lon as ville_arrivee_lon,
+                vd.nom as depart , vr.nom as arrivee, v.nom as etape ,v.lat as lat_etape , v.lon as lon_etape ,
+                v.id_ville as id_ville
+                from public.conducteurs u
+                JOIN trajets s ON u.id_conducteur = s.id_conducteur
+                Join villes vd on s.ville_depart = vd.id_ville
+                Join villes vr on s.ville_arrivee = vr.id_ville
+                join etapes e on e.id_trajet = s.id_trajet
+                Join villes v on e.ville_etape = v.id_ville
+                where u.id_conducteur= :id_conducteur';
             $stmt = $this->pdo->prepare($qeury);
-            $stmt->bindParam(':id_ville', $id_ville, PDO::PARAM_INT);
+            $stmt->bindParam(':id_conducteur', $id_conducteur, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
 

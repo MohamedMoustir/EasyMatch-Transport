@@ -117,8 +117,8 @@
 
         var map = L.map('map').setView([A.lat, A.lon], 6);
 
-        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: 'Leaflet &copy; OpenStreetMap contributors',
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri, HERE, Garmin, FAO, NOAA',
             maxZoom: 18
         }).addTo(map);
 
