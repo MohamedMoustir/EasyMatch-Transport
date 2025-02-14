@@ -73,35 +73,52 @@ class Trajet {
 
 
     public function CreateTrajet($Trajet)
-{
-    try {
-        $query = 'INSERT INTO public.trajets(ville_depart, ville_arrivee, date_depart, date_arrivee, id_conducteur)
-                  VALUES (:ville_depart, :ville_arrivee, :date_depart, :date_arrivee, :id_conducteur)';
+    {
+        try {
+            $query = 'INSERT INTO public.trajets(ville_depart, ville_arrivee, date_depart, date_arrivee, id_conducteur)
+                    VALUES (:ville_depart, :ville_arrivee, :date_depart, :date_arrivee, :id_conducteur)';
 
-        $stmt = $this->pdo->prepare($query);
+            $stmt = $this->pdo->prepare($query);
 
 
-    $stmt->execute([
-            'ville_depart' => $Trajet->getVilleDepart(),
-            'ville_arrivee' => $Trajet->getVilleArrivee(),
-            'date_depart' => $Trajet->getDateDepart(),
-            'date_arrivee' => $Trajet->getDateArrivee(),
-            'id_conducteur' => $Trajet->getIdConducteur()
-        ]);
+        $stmt->execute([
+                'ville_depart' => $Trajet->getVilleDepart(),
+                'ville_arrivee' => $Trajet->getVilleArrivee(),
+                'date_depart' => $Trajet->getDateDepart(),
+                'date_arrivee' => $Trajet->getDateArrivee(),
+                'id_conducteur' => $Trajet->getIdConducteur()
+            ]);
 
-        
-       
-
-           
-            return $this->pdo->lastInsertId();
             
         
 
-    } catch (PDOException $e) {
-        error_log("Error creating trajet: " . $e->getMessage());
-        return false;
+            
+                return $this->pdo->lastInsertId();
+                
+            
+
+        } catch (PDOException $e) {
+            error_log("Error creating trajet: " . $e->getMessage());
+            return false;
+        }
     }
-}
+
+
+    public function getTrajet($id_trajet){
+        try{
+            $query = "SELECT *
+                    FROM trajets 
+                    WHERE id_trajet = :id_trajet";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id_trajet',$id_trajet,PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $trajet = new Self($result['id_trajet'],$result['ville_depart'],$result['ville_arrivee'],$result['date_depart'],$result['date_arrivee'],$result['id_conducteur']);
+            return $trajet ;
+        }catch(Exception $e){
+            error_log("Erreur lors de la récupération de l'annonce: " . $e->getMessage());
+        }
+    }
 
 }
 

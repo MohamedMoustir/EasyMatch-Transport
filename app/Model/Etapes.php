@@ -77,5 +77,22 @@ class Etape
             return false;
         }
     }
+
+    public function AllEtapes($id)
+    {
+        try{
+            $query = "SELECT * 
+                    FROM etapes E
+                        JOIN villes V ON E.ville_etape = V.id_ville
+                    WHERE id_trajet = :id_trajet
+                    ORDER BY ordre ASC";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->execute(['id_trajet' => $id]);
+            $etapes = $stmt->fetchAll();
+            return $etapes;
+        }catch (PDOException $e){
+            error_log("Error getting etapes: " . $e->getMessage());
+        }
+    }
 }
 ?>

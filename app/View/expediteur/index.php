@@ -1,36 +1,26 @@
-<!-- Navigation -->
-<script src="https://cdn.tailwindcss.com"></script>
-
-<nav class="bg-white shadow-md py-4">
-  <div class="container mx-auto px-4 flex items-center justify-between">
-    <!-- Logo -->
-    <div class="flex items-center">
-      <img src="/logo.png" alt="Logistex" class="h-10">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annonces Expediteur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <!-- Navbar Section -->
+<nav class="px-14 py-3 flex items-center justify-between gap-5 shadow-md bg-white bg-opacity-90 shadow-lg fixed w-full z-50">
+    <a href="/EasyMatch_Transports/public/HomeController/index" class="flex items-center gap-1">
+        <img class="w-20" src="" alt="Logo de EasyMatch">
+    </a>
+    <div class="flex items-center justify-between gap-10">
+        <ul class="flex items-center gap-5 text-md">
+            <li class="text-xl duration-500 hover:text-blue-600"><a href="#"><i class="fa-solid fa-clock-rotate-left"></i></a></li>
+            <li class="text-xl duration-500 hover:text-blue-600"><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+        </ul>
+        <a href="#"><img class="w-10" src="user.png" alt="User Profile"></a>
     </div>
-
-    <!-- Nav Links -->
-    <div class="hidden md:flex items-center space-x-8">
-      <a href="#" class="text-blue-600 font-medium">Home</a>
-      <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
-      <a href="#" class="text-gray-700 hover:text-blue-600">Pages</a>
-      <a href="#" class="text-gray-700 hover:text-blue-600">Blog</a>
-      <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
-    </div>
-
-    <!-- Right Section -->
-    <div class="flex items-center space-x-4">
-      <div class="hidden md:block">
-        <span class="text-sm text-gray-600">Emergency Call:</span>
-        <a href="tel:(205)555-0100" class="text-blue-600 font-semibold">(205) 555-0100</a>
-      </div>
-      <button class="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600 transition flex items-center">
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-        TRACK ORDER
-      </button>
-    </div>
-  </div>
 </nav>
 
 <!-- Hero Section -->
@@ -153,7 +143,7 @@
         ?>
         <div class="bg-white rounded-lg shadow-md hover:shadow-lg transition">
           <div class="p-6">
-            <img src="../<?= $annonce['couverture'] ?>" alt="Casablanca to Paris"
+            <img src="../../public/assets/images/<?= $annonce['couverture'] ?>" alt="Casablanca to Paris"
               class="w-full h-32 object-cover mb-4 rounded-lg">
             <div class="flex justify-between items-start mb-4">
               <div>
@@ -196,7 +186,7 @@
               </div>
             </div>
             <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-              <a href="?<?= $annonce['id_annonce'] ?>"> Contacter</a>
+              <a href="/EasyMatch_Transport/public/DetailsController/get/<?= $annonce['id_annonce'] ?>">Consulter Détails</a>
             </button>
           </div>
         </div>
@@ -247,23 +237,6 @@
   </div>
 </section>
 
-<!-- CTA Section -->
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold mb-4">Prêt à expédier vos colis ?</h2>
-    <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
-      Rejoignez notre communauté et trouvez le transporteur idéal pour vos besoins
-    </p>
-    <div class="flex gap-4 justify-center">
-      <button class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700">
-        Créer un compte
-      </button>
-      <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold border border-blue-600 hover:bg-blue-50">
-        En savoir plus
-      </button>
-    </div>
-  </div>
-</section>
 <!-- Footer Section -->
 <footer class="bg-blue-900 text-white py-10">
   <div class="container mx-auto px-4">
@@ -320,3 +293,12 @@
     </div>
   </div>
 </footer>
+</body>
+</html>
+
+
+
+
+
+<!-- Navigation -->
+

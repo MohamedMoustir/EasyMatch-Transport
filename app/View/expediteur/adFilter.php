@@ -149,10 +149,10 @@
                                 <span>Prix: 20 DH/kg</span>
                             </div>
                         </div>
-                        <!-- Bouton "Contacter" -->
+                      
                         <button class="w-full mt-6 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-                            <a href="?id_annonce=<?= $annonce->id_annonce ?>">Contacter</a>
-                        </button>
+              <a href="/EasyMatch_Transport/public/DetailsController/get/<?= $annonce->id_annonce ?>">Consulter Détails</a>
+            </button>
                     </div>
                 </div>
             <?php endforeach; ?>
