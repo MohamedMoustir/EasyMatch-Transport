@@ -96,9 +96,6 @@ class UserController {
         require_once __DIR__ . '/../View/auth/login.php';
     }
 }
-<<<<<<< HEAD
 $user = new UserController();
 $user->add();
-=======
->>>>>>> 92a25483c26eca48e0f3bb9052a9b2c5f7daef76
 ?>
