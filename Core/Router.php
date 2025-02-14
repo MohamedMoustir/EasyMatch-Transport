@@ -29,7 +29,7 @@ class Router {
             $this->method = $URL[1];
             unset($URL[1]);
         }
-
+       
         call_user_func_array([$controller, $this->method], $URL);
     }
 }

@@ -1,7 +1,14 @@
 <?php
-require_once '../config/database.php';
 
-class DashboardController {
+class DashboardController extends Controller {
+
+    public function __construct() {
+    }
+
+    public function index() {
+$this->loadView('admin'.DS.'dashboard',[]);
+// require_once '../View/admin/dashboard.php';
+    }
     public function getStats() {
         global $db; // Connexion à la base de données
 

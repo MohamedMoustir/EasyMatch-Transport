@@ -43,6 +43,31 @@ class User {
             return false;
         }
     }
+    public function getAllUsers() {
+        $stmt = $this->pdo->prepare("SELECT * FROM users");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+  
+    public function verifyUser($id) {
+        $stmt = $this->pdo->prepare("UPDATE users SET status = 'verified' WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+    
+    
+    public function suspendUser($id) {
+        $stmt = $this->pdo->prepare("UPDATE users SET status = 'suspended' WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+    
+   
+    public function deleteUser($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+    
     
 }
+
 ?>

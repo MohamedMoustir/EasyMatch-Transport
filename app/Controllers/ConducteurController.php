@@ -12,7 +12,8 @@ require_once __DIR__ . '/../../Core/Database.php';
 class ConducteurController
 {
 
-
+    // use Controller;
+    // private User $userModel;
     public function createVilleandEtap()
     {
         // header('Content-Type: application/json');
@@ -120,5 +121,52 @@ class ConducteurController
     echo json_encode(['success' => true, 'data' => $gridAnnonce]);
 
 }
+
+  
+
+//     public function __construct() {
+//         $this->userModel = new User();
+//     }
+
+//     // 🔍 Get all users for admin panel
+//     public function index() {
+//         $users = $this->userModel->getAllUsers();
+//         require_once __DIR__ . '/../View/admin/users.php';
+//     }
+
+//     // ✅ Verify user (activate)
+//     public function verify($id) {
+//         $this->userModel->verifyUser($id);
+//         header("Location: ../../View/admin/users.php");
+//     }
+
+//     // 🚫 Suspend user
+//     public function suspend($id) {
+//         $this->userModel->suspendUser($id);
+//         header("Location: ../../View/admin/users.php");
+//     }
+
+//     // ❌ Delete user
+//     public function delete($id) {
+//         $this->userModel->deleteUser($id);
+//         header("Location: ../../View/admin/users.php");
+//     }
+// }
+
+// // Handle admin actions dynamically
+// if (isset($_GET['action']) && isset($_GET['id'])) {
+//     $controller = new UserController();
+//     $id = $_GET['id'];
+
+//     if ($_GET['action'] === 'verify') {
+//         $controller->verify($id);
+//     } elseif ($_GET['action'] === 'suspend') {
+//         $controller->suspend($id);
+//     } elseif ($_GET['action'] === 'delete') {
+//         $controller->delete($id);
+//     }
+
+
+
 
 }
