@@ -43,8 +43,8 @@
         <h3 class="text-lg font-medium text-white">Notifications</h3>
     </div>
     <div class="max-h-96 overflow-y-auto">
-        <?php if (isset($notificat) && !empty($notificat)): ?>
-            <?php foreach ($notificat as $notification): ?>
+        <?php if (isset($notifications) && !empty($notifications)): ?>
+            <?php foreach ($notifications as $notification): ?>
                 <div class="p-4 border-b border-white/10 hover:bg-white/5">
                     <div class="flex items-start space-x-4">
                         <div class="flex-1 rtl:space-x-reverse">
@@ -310,57 +310,65 @@
 
                 <div class="space-y-4">
                     <!-- Demande #1 -->
-                    <div
-                        class="group p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/50">
-                        <div class="flex justify-between items-start">
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex items-center space-x-3">
-                                        <h3 class="text-xl font-medium text-white">Demande #1</h3>
-                                        <span
-                                            class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-full">Urgent</span>
-                                    </div>
-                                    <p class="text-gray-400 mt-1">Paris → Lyon</p>
-                                </div>
+                    <?php if (!empty($commandes) && is_array($commandes)): ?>
+    <?php foreach ($commandes as $commande): ?>
+        <div class="group p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-purple-500/50">
+            <div class="flex justify-between items-start">
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex items-center space-x-3">
+                            <h3 class="text-xl font-medium text-white">Demande #<?= htmlspecialchars($commande['id_commande']); ?></h3>
+                            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-sm rounded-full">
+                                <?= htmlspecialchars($commande['status']); ?>
+                            </span>
+                        </div>
+                        <p class="text-gray-400 mt-1"><?= htmlspecialchars($commande['origine']); ?> → <?= htmlspecialchars($commande['destination']); ?></p>
+                    </div>
 
-                                <div class="grid grid-cols-2 gap-4 max-w-xl">
-                                    <div class="bg-white/5 p-3 rounded-lg">
-                                        <p class="text-gray-400 text-sm">Date de livraison</p>
-                                        <p class="text-white">24 Feb 2025</p>
-                                    </div>
-                                    <div class="bg-white/5 p-3 rounded-lg">
-                                        <p class="text-gray-400 text-sm">Type de colis</p>
-                                        <p class="text-white">Moyen (5-10kg)</p>
-                                    </div>
-                                    <div class="bg-white/5 p-3 rounded-lg">
-                                        <p class="text-gray-400 text-sm">Prix proposé</p>
-                                        <p class="text-white">45 €</p>
-                                    </div>
-                                    <div class="bg-white/5 p-3 rounded-lg">
-                                        <p class="text-gray-400 text-sm">Distance</p>
-                                        <p class="text-white">465 km</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col space-y-3">
-                                <button
-                                    class="px-6 py-3 bg-green-500/20 text-green-400 rounded-xl hover:bg-green-500 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
-                                    <span>✓</span>
-                                    <span>Accepter</span>
-                                </button>
-                                <button
-                                    class="px-6 py-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
-                                    <span>×</span>
-                                    <span>Refuser</span>
-                                </button>
-                                <button
-                                    class="px-6 py-3 bg-white/5 text-gray-400 rounded-xl hover:bg-white/10 hover:text-white transition-all duration-300">
-                                    Détails
-                                </button>
-                            </div>
+                    <div class="grid grid-cols-2 gap-4 max-w-xl">
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <p class="text-gray-400 text-sm">Date de soumission</p>
+                            <p class="text-white">
+                                <?= date("d/m/Y H:i", strtotime($commande['date_soumission'])); ?>
+                            </p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <p class="text-gray-400 text-sm">Type de colis</p>
+                            <p class="text-white"><?= htmlspecialchars($commande['type_colis']); ?></p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <p class="text-gray-400 text-sm">Prix proposé</p>
+                            <p class="text-white"><?= htmlspecialchars($commande['prix']); ?> €</p>
+                        </div>
+                        <div class="bg-white/5 p-3 rounded-lg">
+                            <p class="text-gray-400 text-sm">Distance</p>
+                            <p class="text-white"><?= htmlspecialchars($commande['distance']); ?> km</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="flex flex-col space-y-3">
+                    <a href="/commande/accepter/<?= htmlspecialchars($commande['id_commande']); ?>"
+                       class="px-6 py-3 bg-green-500/20 text-green-400 rounded-xl hover:bg-green-500 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
+                        <span>✓</span>
+                        <span>Accepter</span>
+                    </a>
+                    <a href="/commande/refuser/<?= htmlspecialchars($commande['id_commande']); ?>"
+                       class="px-6 py-3 bg-red-500/20 text-red-400 rounded-xl hover:bg-red-500 hover:text-white transition-all duration-300 flex items-center justify-center space-x-2">
+                        <span>×</span>
+                        <span>Refuser</span>
+                    </a>
+                    <button class="px-6 py-3 bg-white/5 text-gray-400 rounded-xl hover:bg-white/10 hover:text-white transition-all duration-300">
+                        Détails
+                    </button>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p class="text-gray-400">Aucune commande disponible pour l’instant.</p>
+<?php endif; ?>
+
 
                     <!-- Demande #2 -->
                     <div
