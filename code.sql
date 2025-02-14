@@ -2,7 +2,7 @@ CREATE TYPE user_status AS ENUM ('Actif', 'Suspendu');
 CREATE TYPE user_role AS ENUM ('Admin','Expediteur','Conducteur');
 CREATE TYPE enum_status AS ENUM ('En attente', 'Validé', 'Refusé');
 CREATE TYPE vehicule_type AS ENUM ('Voiture', 'Camion');
-
+use Transport;
 
 CREATE TABLE users (
     id_user SERIAL PRIMARY KEY,
