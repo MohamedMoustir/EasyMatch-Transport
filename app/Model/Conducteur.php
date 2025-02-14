@@ -3,7 +3,12 @@
 require_once 'User.php';
 
 class Conducteur extends User{
-    
+    private $permis;
+
+    public function __construct($id_user, $nom, $prenom, $phone, $email, $password, $role, $date_creation, $status, $isVerified,$permis){
+        parent::__construct($id_user, $nom, $prenom, $phone, $email, $password, $role, $date_creation, $status, $isVerified);
+        $this->permis = $permis;
+    }
     public function index() {
         require_once "../app/view/dashboard.php";
     }
@@ -18,15 +23,18 @@ class Conducteur extends User{
         }
     }
 
-    public function getConducteur($id){
+    public function get($id){
         try{
             $query = "SELECT *
-                    FROM conducteurs
+                    FROM conducteurs C 
+                    JOIN users U ON U.id_user = C.id_conducteur
                     WHERE id_conducteur = :id";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id',$id,PDO::PARAM_INT);
             $stmt->execute();
-            $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $conducteur = new Self($result['id_conducteur'],$result['nom'],$result['prenom'],$result['phone'],$result['email'],$result['password'],$result['role'],$result['date_creation'],$result['status'],$result['isVerified'],$result['permis']);
+            return $conducteur ;
         }catch(Exception $e){
             error_log("Erreur lors de la récupération de l'annonce: " . $e->getMessage());
         }

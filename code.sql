@@ -40,7 +40,7 @@ CREATE TABLE annonces(
     couverture VARCHAR(255) NOT NULL,
     status enum_status DEFAULT 'En attente',
     date_publication TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    id_conducteur INT NOT NULL,
+    id_conducteur INT UNIQUE NOT NULL ,
     FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

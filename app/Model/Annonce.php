@@ -224,13 +224,54 @@ class Annonce
 
     public function getAnnonce($id){
         try{
-            $query = "SELECT *
-                    FROM annonces
-                    WHERE id_annonce = :id";
+            $query = "SELECT 
+                        a.id_annonce, 
+                        a.titre, 
+                        a.description, 
+                        a.couverture, 
+                        a.status AS statut_annonce, 
+                        a.date_publication, 
+                        
+                        u.nom AS nom_conducteur, 
+                        u.prenom AS prenom_conducteur, 
+                        u.phone AS telephone_conducteur, 
+                        u.email AS email_conducteur, 
+                        c.permis AS numero_permis, 
+
+                        t.id_trajet, 
+                        v_depart.nom AS ville_depart, 
+                        v_arrivee.nom AS ville_arrivee, 
+                        t.date_depart, 
+                        t.date_arrivee, 
+
+                        e.id_etape, 
+                        v_etape.nom AS ville_etape,
+                        e.ordre,
+
+                        v.id_vehicule,
+                        v.immatriculation,
+                        v.marque,
+                        v.type AS type_vehicule,
+                        v.coffre AS capacite_coffre
+
+                    FROM annonces a
+                    JOIN conducteurs c ON a.id_conducteur = c.id_conducteur
+                    JOIN users u ON c.id_conducteur = u.id_user
+                    JOIN trajets t ON c.id_conducteur = t.id_conducteur
+                    JOIN villes v_depart ON t.ville_depart = v_depart.id_ville
+                    JOIN villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
+                    LEFT JOIN etapes e ON t.id_trajet = e.id_trajet
+                    LEFT JOIN villes v_etape ON e.ville_etape = v_etape.id_ville
+                    JOIN vehicules v ON c.id_conducteur = v.id_conducteur
+                WHERE a.id_annonce = :id
+                ORDER BY a.id_annonce, e.ordre
+
+                    ";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id',$id,PDO::PARAM_INT);
             $stmt->execute();
-            $stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
         }catch(Exception $e){
             error_log("Erreur lors de la récupération de l'annonce: " . $e->getMessage());
         }

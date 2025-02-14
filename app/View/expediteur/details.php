@@ -35,15 +35,15 @@
 
                 <!-- Title & Basic Info -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <h1 class="text-3xl font-bold mb-4">Transport de colis <?php echo $trajet->getVilleDepart(); ?> ➔ <?php echo $trajet->getVilleArrivee(); ?></h1>
+                    <h1 class="text-3xl font-bold mb-4">Transport de colis <?= $annonces['ville_depart'] ?> ➔ <?= $annonces['ville_arrivee']; ?></h1>
                     <div class="flex items-center gap-4 text-gray-600">
                         <div class="flex items-center">
                             <i class="fas fa-user mr-2"></i>
-                            <span><?php echo $expediteur->getPrenom().' '.$expediteur->getNom() ; ?></span>
+                            <span><?php echo $annonces['prenom_conducteur'].' '. $annonces['nom_conducteur'] ; ?></span>
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-calendar-alt mr-2"></i>
-                            <span>Publié le <?php echo $annonce->getDatePublication() ; ?></span>
+                            <span>Publié le <?= $annonces['date_publication'] ; ?></span>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h2 class="text-xl font-bold mb-4">Description du trajet</h2>
                     <p class="text-gray-700 leading-relaxed">
-                        <?php echo $annonce->getDescription() ?>
+                        <?= $annonces['description'] ?>
                     </p>
                 </div>
 
@@ -63,25 +63,28 @@
                         <div class="flex items-center">
                             <i class="fas fa-map-marker-alt text-green-500 mr-3"></i>
                             <div>
-                                <p class="font-semibold">Départ: <?php echo $trajet->getVilleDepart() ?></p>
-                                <p class="text-sm text-gray-600"><?php echo $trajet->getDateDepart() ?></p>
+                                <p class="font-semibold">Départ: <?= $annonces['ville_depart'] ?></p>
+                                <p class="text-sm text-gray-600"><?= $annonces['date_depart'] ?></p>
                             </div>
                         </div>
                         <div class="border-l-2 border-gray-200 ml-5 pl-5 space-y-4">
+                            <?php foreach($etapes as $etp) {?>
+                            
                             <div class="relative">
                                 <div class="absolute w-3 h-3 bg-gray-400 rounded-full -left-7 top-3"></div>
-                                <p>Arrêt à <?php echo $etape[0]; ?></p>
+                                <p>Arrêt à <?= $etp['nom'] ?></p>
                             </div>
-                            <div class="relative">
+                            <?php } ?>
+                            <!-- <div class="relative">
                                 <div class="absolute w-3 h-3 bg-gray-400 rounded-full -left-7 top-3"></div>
-                                <p>Arrêt à <?php echo $etape[1]; ?></p>
-                            </div>
+                                <p>Arrêt à </p>
+                            </div> -->
                         </div>
                         <div class="flex items-center">
                             <i class="fas fa-flag-checkered text-red-500 mr-3"></i>
                             <div>
-                                <p class="font-semibold">Arrivée: <?php echo $trajet->getVilleArrivee(); ?></p>
-                                <p class="text-sm text-gray-600"><?php echo $trajet->getDateArrivee(); ?></p>
+                                <p class="font-semibold">Arrivée: <?= $annonces['ville_arrivee']; ?></p>
+                                <p class="text-sm text-gray-600"><?= $annonces['date_arrivee']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -141,14 +144,18 @@
                 <!-- Vehicle Details -->
                 <div class="bg-white p-6 rounded-lg shadow">
                     <h2 class="text-xl font-bold mb-4">Véhicule</h2>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-3 gap-4">
                         <div>
                             <p class="font-semibold">Marque:</p>
-                            <p>Renault Master</p>
+                            <p><?= $annonces['marque'] ?></p>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Type:</p>
+                            <p><?= $annonces['type_vehicule'] ?></p>
                         </div>
                         <div>
                             <p class="font-semibold">Volume coffre:</p>
-                            <p>13m³ (L 3.5m x l 1.8m x H 2m)</p>
+                            <p><?= $annonces['capacite_coffre'] ?>m³</p>
                         </div>
                     </div>
                 </div>
