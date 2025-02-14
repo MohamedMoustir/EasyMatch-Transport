@@ -126,7 +126,7 @@ class Annonce
                 JOIN trajets t ON c.id_conducteur = t.id_conducteur
                 JOIN villes v ON t.ville_depart = v.id_ville
                 JOIN villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
-                where s.status ='En attente'";
+                where s.status ='Validé'";
 
 
             $filterQuery = "";
@@ -166,40 +166,40 @@ class Annonce
             }
 
             $query = " SELECT DISTINCT
-            a.id_annonce,
-    u.nom, 
-    ville_depart.nom AS ville_depart_nom, 
-    v_arrivee.nom AS ville_arrivee_nom, 
-    t.date_depart, 
-    t.date_arrivee,
-	etapes_ville.nom,
-	a.couverture,
-    ville_depart.lat as ville_departlat,
-    ville_depart.lon as ville_departlon,
-    v_arrivee.lat as v_arriveelat,
-    v_arrivee.lon as v_arriveelon
+                        a.id_annonce,
+                        u.nom, 
+                        ville_depart.nom AS ville_depart_nom, 
+                        v_arrivee.nom AS ville_arrivee_nom, 
+                        t.date_depart, 
+                        t.date_arrivee,
+                        etapes_ville.nom,
+                        a.couverture,
+                        ville_depart.lat as ville_departlat,
+                        ville_depart.lon as ville_departlon,
+                        v_arrivee.lat as v_arriveelat,
+                        v_arrivee.lon as v_arriveelon
 
 
-FROM 
-    public.annonces a
-JOIN 
-    conducteurs c ON a.id_conducteur = c.id_conducteur
-JOIN 
-    users u ON c.id_conducteur = u.id_user
-JOIN 
-    trajets t ON c.id_conducteur = t.id_conducteur
-JOIN 
-    villes ville_depart ON t.ville_depart = ville_depart.id_ville
-JOIN 
-    villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
-JOIN 
-    etapes e ON t.id_trajet = e.id_trajet
-JOIN 
-    villes etapes_ville ON etapes_ville.id_ville = e.ville_etape  
-WHERE 
-    a.status = 'En attente' " . $filterQuery . "
-          ORDER BY id_annonce DESC
-          LIMIT :rows_pre_page OFFSET :starts";
+                    FROM 
+                        public.annonces a
+                    JOIN 
+                        conducteurs c ON a.id_conducteur = c.id_conducteur
+                    JOIN 
+                        users u ON c.id_conducteur = u.id_user
+                    JOIN 
+                        trajets t ON c.id_conducteur = t.id_conducteur
+                    JOIN 
+                        villes ville_depart ON t.ville_depart = ville_depart.id_ville
+                    JOIN 
+                        villes v_arrivee ON t.ville_arrivee = v_arrivee.id_ville
+                    JOIN 
+                        etapes e ON t.id_trajet = e.id_trajet
+                    JOIN 
+                        villes etapes_ville ON etapes_ville.id_ville = e.ville_etape  
+                    WHERE 
+                        a.status = 'Validé' " . $filterQuery . "
+                            ORDER BY id_annonce DESC
+                            LIMIT :rows_pre_page OFFSET :starts";
 
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':starts', $starts, PDO::PARAM_INT);
@@ -218,6 +218,21 @@ WHERE
 
         } catch (PDOException $e) {
             echo "Errors: " . $e->getMessage();
+        }
+    }
+
+
+    public function getAnnonce($id){
+        try{
+            $query = "SELECT *
+                    FROM annonces
+                    WHERE id_annonce = :id";
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':id',$id,PDO::PARAM_INT);
+            $stmt->execute();
+            $stmt->fetch(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            error_log("Erreur lors de la récupération de l'annonce: " . $e->getMessage());
         }
     }
 }

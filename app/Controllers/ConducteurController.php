@@ -112,13 +112,13 @@ class ConducteurController
    
     
     public function stepper()
-{
-    $afficheAnnonce = new Annonce('','','','','');
-    $gridAnnonce = $afficheAnnonce->paginationAnnonce();
+    {
+        $afficheAnnonce = new Annonce('','','','','');
+        $gridAnnonce = $afficheAnnonce->paginationAnnonce();
 
-    // header('Content-Type: application/json');
-    echo json_encode(['success' => true, 'data' => $gridAnnonce]);
+        // header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'data' => $gridAnnonce]);
 
-}
+    }
 
 }

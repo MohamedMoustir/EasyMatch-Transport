@@ -8,7 +8,7 @@ class HomeController
 
         $pages = $afficheAnnonce->getPages();
 
-        require_once  __DIR__ . '/../../public/assets/index.php';
+        require_once  __DIR__ . '/../View/expediteur/index.php';
 
     }
 }

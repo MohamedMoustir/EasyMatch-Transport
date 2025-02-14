@@ -93,11 +93,15 @@ CREATE TABLE etapes(
 CREATE TABLE commandes(
     id_commande SERIAL PRIMARY KEY,
     id_marchandise INT NOT NULL,
-    id_etape INT NOT NULL,
+    ville_depart_cmd INT NOT NULL,
+    ville_arrivee_cmd INT NOT NULL,
+    id_conducteur  INT NOT NULL,
     status enum_status DEFAULT 'En attente',
     date_soumission TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_marchandise) REFERENCES marchandises(id_marchandise) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_etape) REFERENCES etapes(id_etape) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (id_conducteur) REFERENCES conducteurs(id_conducteur) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_depart_cmd) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (ville_arrivee_cmd) REFERENCES villes(id_ville) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE notifications(
