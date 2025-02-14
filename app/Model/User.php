@@ -1,6 +1,5 @@
 <?php
-require_once  '../../Core/Database.php';
-
+require_once __DIR__ . '/../../Core/Database.php';
 class User {
     protected $pdo;
     protected ?int $id_user;

@@ -1,22 +1,25 @@
 <?php
-require_once  '../Model/Notification.php'; 
-require_once '../../Core/Database.php';
-require_once '../../Core/Controller.php';
-require_once '../../Core/Router.php';
+require_once __DIR__ . '/../Model/Notification.php'; 
+require_once __DIR__ . '/../../Core/Database.php';
+require_once __DIR__ . '/../../Core/Controller.php';
+require_once __DIR__ . '/../../Core/Router.php';
 class NotificationController {
-    use Controller;
-    private  Notification $notificationModel;
+    
+   
 
   
 
     public function affichageNotification() {
 
-        $id_conducteur = isset($_SESSION["id"]) ? $_SESSION["id"] : 5;
+  
+        $id_conducteur = isset($_SESSION["id"]) ? $_SESSION["id"] : null;
         $notificationModel = new Notification('','',$id_conducteur);
         $notificat = $notificationModel->affichageNotifications($notificationModel);
 
-         require_once '../../View/conducteur/dashbard.php';
-        
+
+  
+        require_once __DIR__ . '/../View/conducteur/dashboard.php';
+            
     }
 }
 

@@ -62,7 +62,7 @@ class Notification
     {
         try {
            $id_conducteur = $notif->getIdRecepteur();
-            $query = "SELECT * FROM notifications s  join conducteurs  c on s.id_recepteur = c.id_conducteur where c.id_conducteur = id_conducteur";
+            $query = "SELECT * FROM notifications s JOIN conducteurs c ON s.id_recepteur = c.id_conducteur WHERE c.id_conducteur = :id_conducteur";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':id_conducteur', $id_conducteur, PDO::PARAM_INT);
             $stmt->execute();

@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once '../../Core/Controller.php';
-require_once  '../Model/User.php';
-require_once '../../Core/Database.php';
-require_once '../../Core/Router.php';
+require_once __DIR__ . '/../Model/User.php'; 
+require_once __DIR__ . '/../../Core/Database.php';
+require_once __DIR__ . '/../../Core/Controller.php';
+require_once __DIR__ . '/../../Core/Router.php';
 
 class UserController {
     use Controller;
@@ -28,6 +28,8 @@ class UserController {
             }
             exit();
         }
+        require_once __DIR__ . '/../View/auth/register.php';
+
     }
 
     public function login() {  
@@ -44,7 +46,7 @@ class UserController {
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['phone'] = $user['phone'];
                 $_SESSION['role'] = $user['role'];
-                $_SESSION['date_creation'] = $user['date_creation']
+                $_SESSION['date_creation'] = $user['date_creation'];
                 $_SESSION['id'] = $user['id_user'];
                 switch($user['role']) {
                     case 'Expediteur':
@@ -60,19 +62,8 @@ class UserController {
             }
             exit();
         }
+        require_once __DIR__ . '/../View/auth/login.php';
     }
 }
 
-$userController = new UserController();
-
-if (isset($_POST['action'])) {
-    switch($_POST['action']) {
-        case 'add':
-            $userController->add();
-            break;
-        case 'login':
-            $userController->login();
-            break;
-    }
-}
 ?>

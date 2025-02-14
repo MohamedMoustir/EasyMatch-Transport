@@ -2,7 +2,7 @@
 class Router {
 
     private $controller = 'HomeController'; 
-    private $method = 'index';    
+    private $method = 'index';
 
     public function splitURL() {
         $URL = $_GET['url'] ?? ''; 
@@ -12,33 +12,27 @@ class Router {
 
     public function loadController() {
         $URL = $this->splitURL();
-        
-        if (empty($URL[0])) {
-            $URL[0] = 'Home';
-        }
     
-        $filename = "../app/Controllers/" . ucfirst($URL[0]) . "Controller.php";
+        $filename = "../app/Controllers/" . ucfirst($URL[0]) . ".php";
         if (file_exists($filename)) {
-            require_once $filename;
-            $this->controller = ucfirst($URL[0]) . "Controller";
+            require_once  $filename;
+            $this->controller = ucfirst($URL[0]);
             unset($URL[0]); 
         } else {
-            require_once "../app/Controllers/_404.php";
+            require_once  "../app/Controllers/_404.php";
             $this->controller = "_404";
         }
     
-        try {
-            $controller = new $this->controller();
-            
-            if (!empty($URL[1]) && method_exists($controller, $URL[1])) {
-                $this->method = $URL[1];
-                unset($URL[1]);
-            }
+        $controller = new $this->controller;
     
-            call_user_func_array([$controller, $this->method], array_values($URL));
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            require_once "../app/Controllers/_404.php";
+        if (empty($URL[1])) {
+            $this->method = 'affichageNotification';
+        } elseif (method_exists($controller, $URL[1])) {
+            $this->method = $URL[1];
+            unset($URL[1]);
         }
+    
+        call_user_func_array([$controller, $this->method], $URL);
     }
+    
 }
